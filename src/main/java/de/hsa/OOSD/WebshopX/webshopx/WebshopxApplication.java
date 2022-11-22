@@ -11,7 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class WebshopxApplication {
-
+	//Wow die erste main
 	public static void main(String[] args) {
 		SpringApplication.run(WebshopxApplication.class, args);
 	}
