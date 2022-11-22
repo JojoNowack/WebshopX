@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <title>Hello World!</title>
+</head>
+<body>
+<h1> This is the first page</h1>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<h1 th:inline="text">if is says hello user you are logged in. else ply log in </h1>
+<form method="post" th:action="@{/logout}">
+    <input type="submit" value="Sign Out"/>
+</form>
+<p>Pls Log yourself in: <a href="/login">here</a></p>
+</form>
+</body>
+</html>
