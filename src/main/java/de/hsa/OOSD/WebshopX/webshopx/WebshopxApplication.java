@@ -1,13 +1,13 @@
-package de.oosd.java.WebsshopX;
+package de.hsa.OOSD.WebshopX.webshopx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebsshopXApplication {
+public class WebshopxApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebsshopXApplication.class, args);
+		SpringApplication.run(WebshopxApplication.class, args);
 	}
 
 }
