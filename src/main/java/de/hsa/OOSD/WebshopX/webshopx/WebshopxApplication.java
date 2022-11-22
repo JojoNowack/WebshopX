@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 public class WebshopxApplication {
 
 	// Test comment by Andreas Schmid
+	// Test comment by Tobias Artz
 	public static void main(String[] args) {
 		SpringApplication.run(WebshopxApplication.class, args);
 	}
