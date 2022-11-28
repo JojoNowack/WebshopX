@@ -1,5 +1,6 @@
 package de.hsa.OOSD.WebshopX.webshopx.models;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,17 +27,27 @@ public class Product {
     /**
      * The name of a specific product.
      */
+    @NotNull
     private String name;
 
     /**
      * The price of a specific product.
      */
+    @NotNull
     private float price;
 
     /**
      * The description of a specific product.
      */
     private String description;
+
+    //only for testing
+    public Product (String name, float price, String description){
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+
 }
 
 

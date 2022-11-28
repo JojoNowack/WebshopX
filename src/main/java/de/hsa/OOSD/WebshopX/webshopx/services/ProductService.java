@@ -30,7 +30,26 @@ public class ProductService {
      * @param productId The id of a specific product.
      * @return The product of the given productId.
      */
-    public Product findProductById(Long productId){
+    public Product getProductById(Long productId){
         return productRepository.findProductById(productId);
+    }
+
+    /**
+     * Returns all products.
+     *
+     * @return All products from the repository.
+     */
+    public Iterable<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    /**
+     * Saves a new product instance in the repository.
+     *
+     * @param product The new product to be saved.
+     * @return The instance of the new Product.
+     */
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 }
