@@ -3,12 +3,12 @@ package de.hsa.OOSD.WebshopX.webshopx.controllers;
 import com.sun.istack.NotNull;
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/products")
+
+@Controller
 public class ProductController {
 
     private final ProductService productService;
@@ -18,8 +18,12 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = { "", "/" })
-    public @NotNull Iterable<Product> getProducts() {
-        return productService.getAllProducts();
+    @GetMapping("/")
+    public String home(Model model){
+
+        Iterable<Product> allProducts = productService.getAllProducts();
+        model.addAttribute("products", allProducts);
+
+        return "index";
     }
 }
