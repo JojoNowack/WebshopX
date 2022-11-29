@@ -41,11 +41,15 @@ public class Product {
      */
     private String description;
 
+    @NotNull
+    private String imageUrl;
+
     //only for testing
-    public Product (String name, float price, String description){
+    public Product(String name, float price, String description, String imageUrl) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
 }

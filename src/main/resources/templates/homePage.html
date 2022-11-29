@@ -102,7 +102,7 @@
     <tr>
         <th:block th:each="product : ${products}">
             <td>
-                <img src="/images/lebensmittelgeschaft.png"/>
+                <img th:src=${product.imageUrl}/> <!-- zeigt Fehler an aber funktioniert" -->
                 <!--  <a href="https://www.flaticon.com/de/kostenlose-icons/lebensmittelgeschaft" title="lebensmittelgeschaft Icons">Lebensmittelgeschaft Icons erstellt von monkik - Flaticon</a> -->
                 <figcaption><span th:text="${product.name}"></span></figcaption>
             </td>
