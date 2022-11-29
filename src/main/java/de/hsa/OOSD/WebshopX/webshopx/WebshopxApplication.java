@@ -19,8 +19,8 @@ public class WebshopxApplication {
 		return args -> {
 			productService.save(new Product("Smartphone", 500.0f, "A simple Smartphone", "/images/lebensmittelgeschaft.png"));
 			productService.save(new Product("Tablet", 300.0f, "A simple Tablet", "/images/waren.png"));
-			productService.save(new Product("SmartWatch", 500.0f, "A simple SmartWatch", "/images/lebensmittelgeschaft.png"));
-			productService.save(new Product("Earpods", 500.0f, "Simple Earpods", "/images/waren.png"));
+			productService.save(new Product("SmartWatch", 550.0f, "A simple SmartWatch", "/images/lebensmittelgeschaft.png"));
+			productService.save(new Product("Earpods", 600.0f, "Simple Earpods", "/images/waren.png"));
 		};
 	}
 }

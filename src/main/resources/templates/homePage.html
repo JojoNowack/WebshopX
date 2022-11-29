@@ -105,6 +105,9 @@
                 <img th:src=${product.imageUrl}/> <!-- zeigt Fehler an aber funktioniert" -->
                 <!--  <a href="https://www.flaticon.com/de/kostenlose-icons/lebensmittelgeschaft" title="lebensmittelgeschaft Icons">Lebensmittelgeschaft Icons erstellt von monkik - Flaticon</a> -->
                 <figcaption><span th:text="${product.name}"></span></figcaption>
+                <span th:text="${product.price}"></span>€
+                <br>
+                <span th:text="${product.description}"></span>
             </td>
         </th:block>
     </tr>
