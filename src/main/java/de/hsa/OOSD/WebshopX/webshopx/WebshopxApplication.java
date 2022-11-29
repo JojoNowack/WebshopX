@@ -1,5 +1,7 @@
 package de.hsa.OOSD.WebshopX.webshopx;
 
+import de.hsa.OOSD.WebshopX.webshopx.models.Product;
+import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Arrays;
@@ -18,17 +20,12 @@ public class WebshopxApplication {
 		SpringApplication.run(WebshopxApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+	CommandLineRunner runner(ProductService productService) {
 		return args -> {
-
-			System.out.println("Let's inspect the beans provided by Spring Boot:");
-
-			String[] beanNames = ctx.getBeanDefinitionNames();
-			Arrays.sort(beanNames);
-			for (String beanName : beanNames) {
-				//System.out.println(beanName);
-			}
-
+			productService.save(new Product("Smartphone", 500.0f, "A simple Smartphone"));
+			productService.save(new Product("Tablet", 300.0f, "A simple Tablet"));
+			productService.save(new Product("SmartWatch", 500.0f, "A simple SmartWatch"));
+			productService.save(new Product("Earpods", 500.0f, "Simple Earpods"));
 		};
 	}
 }
