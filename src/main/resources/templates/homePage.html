@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>WebshopX</title>
-
+    <link href="/images/favicon.png" rel="icon" type="image/x-icon">
 </head>
 
 <style>
@@ -109,6 +109,12 @@
                 <span th:text="${product.price}"></span>€
                 <br>
                 <span th:text="${product.description}"></span>
+                <br>
+                From: <span th:text="${product.artist}"></span>
+                <br>
+                At: <span th:text="${product.date}"></span>
+                <br>
+                Category: <span th:text="${product.category}"></span>
             </td>
         </th:block>
     </tr>
