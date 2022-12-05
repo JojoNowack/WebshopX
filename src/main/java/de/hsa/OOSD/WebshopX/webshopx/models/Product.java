@@ -29,25 +29,39 @@ public class Product {
      */
     @NotNull
     private String name;
+    @NotNull
+    private String artist;
+
 
     /**
      * The price of a specific product.
      */
     @NotNull
     private float price;
+    @NotNull
+    private String date;
+
+
+    @NotNull
+    private String category;
+
 
     /**
      * The description of a specific product.
      */
+    @NotNull
     private String description;
 
     @NotNull
     private String imageUrl;
 
     //only for testing
-    public Product(String name, float price, String description, String imageUrl) {
+    public Product(String name, String artist, float price, String date, String category, String description, String imageUrl) {
         this.name = name;
+        this.artist = artist;
         this.price = price;
+        this.date = date;
+        this.category = category;
         this.description = description;
         this.imageUrl = imageUrl;
     }
