@@ -2,10 +2,10 @@
 <html lang="de">
 
 
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WebshopX</title>
+    <link href="/images/favicon.png" rel="icon" type="image/x-icon">
 </head>
 
 <style>
@@ -20,14 +20,15 @@
         display: inline-block;
         padding: 10px 20px;
     }
+
     ul > li:hover {
         background-color: black;
     }
+
     ul > li > a {
         color: white;
         text-decoration: none;
     }
-
 
 
     .title {
@@ -43,19 +44,15 @@
 
     .categories {
         text-align: center;
-        float:left;
+        float: left;
         width: 20%;
     }
+
     .filter {
         text-align: center;
-        float:right;
+        float: right;
         width: 20%;
     }
-
-
-
-
-
 
 
 </style>
@@ -64,54 +61,64 @@
 <body>
 
 
-    <header>
-        <h1 class="title">
-            Super Expensive Webshop
-        </h1>
-        <p></p>
-        <input type="text" id="suchLeiste"/>
+<header>
+    <h1 class="title">
+        Super Expensive Webshop
+    </h1>
+    <p></p>
+    <input id="suchLeiste" type="text"/>
 
-    </header>
+</header>
 
-    <nav>
-        <ul>
-            <li><a href="/Damen">Damen</a></li>
-            <li><a href="/Herren">Herren</a></li>
-            <li><a href="/Kleidung">Kleidung</a></li>
-            <li><a href="/Accessoires">Accessoires</a></li>
-        </ul>
-    </nav>
+<nav>
+    <ul>
+        <li><a href="/Damen">Damen</a></li>
+        <li><a href="/Herren">Herren</a></li>
+        <li><a href="/Kleidung">Kleidung</a></li>
+        <li><a href="/Accessoires">Accessoires</a></li>
+    </ul>
+</nav>
 
-    <aside class="categories">
+<aside class="categories">
 
-        <p> <a href="/Damen">Damen</a> </p>
-        <p> <a href="/Herren">Herren</a> </p>
-        <p> <a href="/Kleidung">Kleidung</a> </p>
-        <p> <a href="/Accessoires">Accessoires</a> </p>
+    <p><a href="/Damen">Damen</a></p>
+    <p><a href="/Herren">Herren</a></p>
+    <p><a href="/Kleidung">Kleidung</a></p>
+    <p><a href="/Accessoires">Accessoires</a></p>
 
-    </aside>
+</aside>
 
-    <aside class="filter">
-        <p> Filter</p>
-        <p> <a href="/">Preis aufsteigend</a> </p>
-        <p> <a href="/">Preis absteigend</a> </p>
-        <p> <a href="/">von A bis Z</a> </p>
-        <p> <a href="/">Bewertungen</a> </p>
+<aside class="filter">
+    <p> Filter</p>
+    <p><a href="/">Preis aufsteigend</a></p>
+    <p><a href="/">Preis absteigend</a></p>
+    <p><a href="/">von A bis Z</a></p>
+    <p><a href="/">Bewertungen</a></p>
 
-    </aside>
+</aside>
 
 
-    <table id="content">
-        <tr>
-            <th:block th:each="product : ${products}">
+<table id="content">
+    <tr>
+        <th:block th:each="product : ${products}">
             <td>
-                <img src="/gallery"/>
+                <img height="auto" th:src=${product.imageUrl} width="100"/>
+                <!-- zeigt Fehler an aber funktioniert todo in css -->
+                <!--  <a href="https://www.flaticon.com/de/kostenlose-icons/lebensmittelgeschaft" title="lebensmittelgeschaft Icons">Lebensmittelgeschaft Icons erstellt von monkik - Flaticon</a> -->
                 <figcaption><span th:text="${product.name}"></span></figcaption>
+                <span th:text="${product.price}"></span>€
+                <br>
+                <span th:text="${product.description}"></span>
+                <br>
+                From: <span th:text="${product.artist}"></span>
+                <br>
+                At: <span th:text="${product.date}"></span>
+                <br>
+                Category: <span th:text="${product.category}"></span>
             </td>
-                </th:block>
-        </tr>
-    </table>
-
+        </th:block>
+    </tr>
+</table>
 
 
 </body>
