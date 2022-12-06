@@ -24,6 +24,6 @@ public class ProductController {
         Iterable<Product> allProducts = productService.getAllProducts();
         model.addAttribute("products", allProducts);
 
-        return "homePage";
+        return "home_page_bootstrap5";
     }
 }
