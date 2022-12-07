@@ -9,8 +9,7 @@ name: Java CI with Gradle 01
 
 on: [push]
 
-permissions:
-  contents: read
+
 
 jobs:
   build:
