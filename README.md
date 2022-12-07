@@ -1,2 +1,2 @@
 # WebshopX
-here comes an describtion
+here comes an better describtion
