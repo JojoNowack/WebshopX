@@ -39,11 +39,11 @@ public class Product {
     @NotNull
     private float price;
     @NotNull
-    private String date;
+    private int date;
 
 
     @NotNull
-    private String category;
+    private Category category;
 
 
     /**
@@ -56,7 +56,7 @@ public class Product {
     private String imageUrl;
 
     //only for testing
-    public Product(String name, String artist, float price, String date, String category, String description, String imageUrl) {
+    public Product(String name, String artist, float price, int date, Category category, String description, String imageUrl) {
         this.name = name;
         this.artist = artist;
         this.price = price;
