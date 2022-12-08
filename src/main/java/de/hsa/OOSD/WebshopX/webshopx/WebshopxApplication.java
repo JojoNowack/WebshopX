@@ -22,7 +22,7 @@ public class WebshopxApplication {
 			//productService.save(new Product("Tablet", 300.0f, "A simple Tablet", "/images/waren.png"));
 			//productService.save(new Product("SmartWatch", 550.0f, "A simple SmartWatch", "/images/lebensmittelgeschaft.png"));
 			//productService.save(new Product("Earpods", 600.0f, "Simple Earpods", "/images/waren.png"));
-			productService.save(new Product("Maria mit Kind und einem Mönch", "PARMIGIANINO", 9999.0f, 1530, Category.Malerei, "Bayerische Staatsgemäldesammlungen - Alte Pinakothek München", "/images/5289.jpg"));
+			//productService.save(new Product("Maria mit Kind und einem Mönch", "PARMIGIANINO", 9999.0f, 1530, Category.Malerei, "Bayerische Staatsgemäldesammlungen - Alte Pinakothek München", "/images/5289.jpg"));
 			productService.save(new Product("Bildnis des Pfalzgrafen Christian III. von Birkenfeld-Bischweiler-Rappoltstein", "HYACINTHE RIGAUD", 9999.0f, 1743, Category.Malerei, "1901 aus Privatbesitz durch Ankauf erworben", "/images/8176.jpg"));
 			productService.save(new Product("Gerüst eines Neubaues", "PAUL KLEE", 8999.0f, 1930, Category.Malerei, "1963 als Ankauf von Dr. Fritz und Dr. Peter Nathan, Zürich, erworben", "/images/13338.jpg"));
 			productService.save(new Product("Bildnis Gött", "PAUL ROLOFF", 7999.0f, 1933, Category.Malerei, "1937 erworben als Ankauf durch den Staatsminister des Inneren.", "/images/10325.jpg"));

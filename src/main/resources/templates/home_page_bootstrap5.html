@@ -25,6 +25,14 @@
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <input type="search" class="form-control form-control-dark" placeholder="Suche..." aria-label="Search">
         </form>
+        <form th:action="@{/}">
+            Suche: <input id="keyword" name="keyword" size="50" th:value="${keyword}" type="text"/>
+            &nbsp;
+            <input type="submit" value="Search"/>
+            &nbsp;
+            <input aria-label="Search" class="form-control form-control-dark" id="btnClear" onclick="clearSearch()"
+                   placeholder="Suche..." type="button" value="Clear"/>
+        </form>
 
         <div class="col-md-3 text-end">
             <button type="button" class="btn btn-outline-primary me-2">Login</button>
