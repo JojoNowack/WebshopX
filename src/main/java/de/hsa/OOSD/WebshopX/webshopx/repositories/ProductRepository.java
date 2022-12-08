@@ -17,8 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      */
     Product findProductById(Long productId);
 
-    //@Query("SELECT p FROM Product p WHERE CONCAT(p.name, ' ', p.artist, ' ', p.date, ' ', p.price,' ',p.category,' ',p.description) LIKE %?1%") //taken from https://www.codejava.net/frameworks/spring-boot/spring-data-jpa-filter-search-examples
-    @Query("SELECT p FROM Product p WHERE CONCAT(p.name,' ') LIKE %?1%")
     //taken from https://www.codejava.net/frameworks/spring-boot/spring-data-jpa-filter-search-examples
+    @Query("SELECT p FROM Product p WHERE CONCAT(p.name, ' ', p.artist, ' ', p.date, ' ', p.price,' ',p.category,' ',p.description) LIKE %?1%")
     public Iterable<Product> search(String keyword);
 }

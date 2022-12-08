@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Collection;
+
 
 @Controller
 public class ProductController {
@@ -23,6 +25,13 @@ public class ProductController {
 
         System.out.println(keyword);
         Iterable<Product> filteredProducts = productService.getFilteredProducts(keyword);
+        if (filteredProducts instanceof Collection) {
+            int size = ((Collection<?>) filteredProducts).size();
+            if (size < 1) {
+                System.out.println("no results");
+                model.addAttribute("noProducts", "Sorry no products");
+            }
+        }
         model.addAttribute("products", filteredProducts);
 
 
