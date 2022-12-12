@@ -16,9 +16,9 @@
         </a>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link active" aria-current="page">Gemälde</a></li>
-            <li><a href="#" class="nav-link">FAQs</a></li>
-            <li><a href="#" class="nav-link">Über uns</a></li>
+            <li><a href="/" class="nav-link active" aria-current="page">Gemälde</a></li>
+            <li><a href="FAQ" class="nav-link">FAQs</a></li>
+            <li><a href="ueber_uns" class="nav-link">Über uns</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -26,20 +26,29 @@
         </form>
 
         <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2">Login</button>
-            <button type="button" class="btn btn-primary">Registrieren</button>
+            <button type="button">
+                <a href="warenkorb" class="nav-link">Warenkorb</a>
+            </button>
+            <button type="button" class="btn btn-outline-primary me-2">
+                <a href="login" class="nav-link">Login</a>
+            </button>
+            <button type="button" class="btn btn-primary">
+                <a href="register" class="nav-link">Registrieren</a>
+            </button>
         </div>
     </header>
     <div class="row m-2">
         <div class="col-md-3" th:each="product: ${products}">
             <div class="card" style="width: 15rem;">
-                <img alt="Card image cap" class="card-img-top" th:src="${product.imageUrl}">
-                <div class="card-body">
-                    <p class="card-title" th:text = "${product.name}"></p>
-                    <hr>
-                    <p class="card-text" th:text = "${product.price}"></p>
-                    <a href="#" class="btn btn-primary">Zum Einkaufswagen hinzufügen</a>
-                </div>
+                <a th:href="${product.name}" class="nav-link" name="article">
+                    <img alt="Card image cap" class="card-img-top" th:src="${product.imageUrl}">
+                    <div class="card-body">
+                        <p class="card-title" th:text = "${product.name}"></p>
+                        <hr>
+                        <p class="card-text" th:text = "${product.price}"></p>
+                        <a href="#" class="btn btn-primary">Zum Einkaufswagen hinzufügen</a>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
