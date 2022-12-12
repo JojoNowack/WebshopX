@@ -22,13 +22,10 @@
         <li><a class="nav-link" href="#">Über uns</a></li>
     </ul>
 
-    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input aria-label="Search" class="form-control form-control-dark" placeholder="Suche..." type="search">
-    </form>
+
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" th:action="@{/}">
         <input class="form-control form-control-dark" id="keyword" name="keyword" placeholder="Suche..." size="50"
                th:value="${keyword}" type="text"/>
-        <!-- <input type="submit" value="Search"/> -->
     </form>
 
     <div class="col-md-3 text-end">

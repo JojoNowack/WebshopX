@@ -21,14 +21,16 @@ public class ProductController {
 
 
     @GetMapping("/")
-    public String home(Model model, @Param("keyword") String keyword) {
+    public String home(Model model, @Param("keyword") String keyword, @Param("order") String order) {
 
-        System.out.println(keyword);
+        //System.out.println(keyword);
+        //System.out.println(order);
+
         Iterable<Product> filteredProducts = productService.getFilteredProducts(keyword);
         if (filteredProducts instanceof Collection) {
             int size = ((Collection<?>) filteredProducts).size();
             if (size < 1) {
-                System.out.println("no results");
+                //System.out.println("no results");
                 model.addAttribute("noProducts", "Sorry no products");
             }
         }
@@ -37,4 +39,6 @@ public class ProductController {
 
         return "home_page_bootstrap5";
     }
+
+
 }
