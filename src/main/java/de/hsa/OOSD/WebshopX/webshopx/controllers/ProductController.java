@@ -31,7 +31,7 @@ public class ProductController {
             int size = ((Collection<?>) filteredProducts).size();
             if (size < 1) {
                 //System.out.println("no results");
-                model.addAttribute("noProducts", "Sorry no products");
+                model.addAttribute("noProducts", "Zu dieser Suche konnten leider keine Produkte gefunden werden");
             }
         }
         model.addAttribute("products", filteredProducts);
