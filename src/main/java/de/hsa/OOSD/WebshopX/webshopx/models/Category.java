@@ -26,8 +26,6 @@ public class Category {
     @NotNull
     private String name;
 
-    @OneToMany
-    private Set<Product> products = new HashSet<>();
 
     public Category(CategoryType categoryType, String name){
         this.categoryType = categoryType;
