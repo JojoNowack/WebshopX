@@ -4,10 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * The class Product representing a specific product.
@@ -42,9 +39,6 @@ public class Product {
     private String date;
 
 
-    @NotNull
-    private String category;
-
 
     /**
      * The description of a specific product.
@@ -52,20 +46,26 @@ public class Product {
     @NotNull
     private String description;
 
+
+    @ManyToOne
+    private Category category;
     @NotNull
     private String imageUrl;
 
-    //only for testing
-    public Product(String name, String artist, float price, String date, String category, String description, String imageUrl) {
-        this.name = name;
-        this.artist = artist;
-        this.price = price;
-        this.date = date;
+    public Product (String name, float price, String description, Category category,String imageUrl,String artist,String date){
+    
+    this.name=name;
+    this.price= price;
+    this.description=description;
+     this.artist=artist;
+     this.date=date;
+    
+  
         this.category = category;
-        this.description = description;
-        this.imageUrl = imageUrl;
-    }
 
+        this.imageUrl = imageUrl;
+
+    }
 }
 
 

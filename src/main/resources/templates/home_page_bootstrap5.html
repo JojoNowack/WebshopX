@@ -30,14 +30,14 @@
             <button type="button" class="btn btn-primary">Registrieren</button>
         </div>
     </header>
-    <div class="row m-2">
-        <div class="col-md-3" th:each="product: ${products}">
+    <div class="row m-2 justify-content-center">
+        <div class="col m-2 justify-content-center" th:each="product: ${products}">
             <div class="card" style="width: 15rem;">
                 <img alt="Card image cap" class="card-img-top" th:src="${product.imageUrl}">
                 <div class="card-body">
                     <p class="card-title" th:text = "${product.name}"></p>
                     <hr>
-                    <p class="card-text" th:text = "${product.price}"></p>
+                    <p class="card-text" th:text = "${product.category}"></p>
                     <a href="#" class="btn btn-primary">Zum Einkaufswagen hinzufügen</a>
                 </div>
             </div>

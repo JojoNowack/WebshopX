@@ -8,12 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class WebshopxApplication {
-
-	// Test comment by Andreas Schmid
-	// Test comment by Tobias Artz
 	public static void main(String[] args) {
 		SpringApplication.run(WebshopxApplication.class, args);
 	}
+
 	@Bean
 	CommandLineRunner runner(ProductService productService) {
 		return args -> {
@@ -30,4 +28,5 @@ public class WebshopxApplication {
 			productService.save(new Product("Gegen den Wind Schreitender", "ADOLF HÖLZEL", 5999.0f, "1925", "Grafik", "1964 als Schenkung von Sofie und Emanuel Fohn erworben", "/images/13501.jpg"));
 		};
 	}
+
 }
