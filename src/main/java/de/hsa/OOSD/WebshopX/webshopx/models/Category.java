@@ -4,9 +4,10 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
@@ -37,9 +38,7 @@ public class Category {
         return this.name;
     }
 
-    public enum CategoryType{
-        CATEGORY_ONE,
-        CATEGORY_TWO,
-        CATEGORY_THREE
+    public enum CategoryType {
+        Malerei, Grafik, Plastik, Fluegelaltar
     }
 }
