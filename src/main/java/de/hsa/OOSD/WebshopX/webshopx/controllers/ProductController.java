@@ -1,6 +1,7 @@
 package de.hsa.OOSD.WebshopX.webshopx.controllers;
 
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
+import de.hsa.OOSD.WebshopX.webshopx.services.CategoryService;
 import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,11 @@ import java.util.Collection;
 public class ProductController {
 
     private final ProductService productService;
+    private final CategoryService categoryService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CategoryService categoryService) {
         this.productService = productService;
+        this.categoryService = categoryService;
     }
 
 
@@ -35,6 +38,7 @@ public class ProductController {
             }
         }
         model.addAttribute("products", filteredProducts);
+        model.addAttribute("categories", categoryService.getAllCategories());
 
 
         return "home_page_bootstrap5";
