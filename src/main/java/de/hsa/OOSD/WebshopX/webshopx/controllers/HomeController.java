@@ -24,7 +24,7 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String home(Model model, @Param("keyword") String keyword, @Param("order") String order) {
+    public String home(Model model, @Param("keyword") String keyword) {
 
         //System.out.println(keyword);
         //System.out.println(order);
