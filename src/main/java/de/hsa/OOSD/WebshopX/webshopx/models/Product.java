@@ -39,6 +39,9 @@ public class Product {
     private String date;
 
 
+    @ManyToOne
+    private Category category;
+
 
     /**
      * The description of a specific product.
@@ -46,26 +49,20 @@ public class Product {
     @NotNull
     private String description;
 
-
-    @ManyToOne
-    private Category category;
     @NotNull
     private String imageUrl;
 
+    //only for testing
     public Product(String name, String artist, float price, String date, Category category, String description, String imageUrl) {
-
         this.name = name;
-        this.price = price;
-        this.description = description;
         this.artist = artist;
+        this.price = price;
         this.date = date;
-
-
         this.category = category;
-
+        this.description = description;
         this.imageUrl = imageUrl;
-
     }
+
 }
 
 

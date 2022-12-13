@@ -40,7 +40,6 @@ public class HomeController {
         model.addAttribute("products", filteredProducts);
         model.addAttribute("categories", categoryService.getAllCategories());
 
-
         return "home_page_bootstrap5";
     }
 
