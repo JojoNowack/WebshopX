@@ -26,7 +26,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model, @Param("keyword") String keyword, @Param("order") String order) {
 
-        System.out.println(keyword);
+        //System.out.println(keyword);
         //System.out.println(order);
 
         Iterable<Product> filteredProducts = productService.getFilteredProducts(keyword);
