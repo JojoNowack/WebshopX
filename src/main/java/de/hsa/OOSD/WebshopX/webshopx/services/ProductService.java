@@ -52,4 +52,12 @@ public class ProductService {
     public Product save(Product product) {
         return productRepository.save(product);
     }
+
+    public Iterable<Product> getFilteredProducts(String keyword) {
+        if (keyword != null) {
+            return productRepository.search(keyword); //todo is casesensitiv
+        }
+        return productRepository.findAll();
+    }
 }
+
