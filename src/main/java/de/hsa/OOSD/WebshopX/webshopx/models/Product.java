@@ -26,26 +26,45 @@ public class Product {
      */
     @NotNull
     private String name;
+    @NotNull
+    private String artist;
+
 
     /**
      * The price of a specific product.
      */
     @NotNull
-    private Float price;
+    private float price;
+    @NotNull
+    private String date;
+
+
 
     /**
      * The description of a specific product.
      */
+    @NotNull
     private String description;
+
 
     @ManyToOne
     private Category category;
+    @NotNull
+    private String imageUrl;
 
-    public Product (String name, float price, String description, Category category){
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    public Product (String name, float price, String description, Category category,String imageUrl,String artist,String date){
+    
+    this.name=name;
+    this.price= price;
+    this.description=description;
+     this.artist=artist;
+     this.date=date;
+    
+  
         this.category = category;
+
+        this.imageUrl = imageUrl;
+
     }
 }
 
