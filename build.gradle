@@ -40,10 +40,10 @@ azurewebapp {
     resourceGroup = 'ProjectXBib_group'
     appName = 'ProjectXBib'
     pricingTier = 'P1v2'
-    region = 'westus'
+    region = 'centralus'
     runtime {
         os = 'Linux'
         webContainer = 'Tomcat 9.0'
-        javaVersion = 'Java 8'
+        javaVersion = 'Java 17'
     }
 }
