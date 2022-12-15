@@ -33,8 +33,8 @@ public class FullStackTest {
     }
 
     @Test
-    public void shouldReturnMariaPage() throws Exception {
-        ResultActions test = this.mockMvc.perform(get("/Maria%20mit%20Kind%20und%20einem%20Mönch")).andDo(print()).andExpect(status().isOk());
+    public void shouldReturnAbendmahlPage() throws Exception {
+        ResultActions test = this.mockMvc.perform(get("/Abendmahl")).andDo(print()).andExpect(status().isOk());
         test.andExpect(content().string(containsString("Article")));
 
     }
