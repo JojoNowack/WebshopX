@@ -35,8 +35,15 @@ public class FullStackTest {
     @Test
     public void shouldReturnMariaPage() throws Exception {
         ResultActions test = this.mockMvc.perform(get("/Maria%20mit%20Kind%20und%20einem%20Mönch")).andDo(print()).andExpect(status().isOk());
-        Thread.sleep(1000);
         test.andExpect(content().string(containsString("Article")));
+
+    }
+
+    @Test
+    public void shouldReturnJosephAfterSearch() throws Exception {
+        ResultActions test = this.mockMvc.perform(get("/?keyword=Joseph")).andDo(print()).andExpect(status().isOk());
+        test.andExpect(content().string(containsString("Max")));
+
 
     }
 
