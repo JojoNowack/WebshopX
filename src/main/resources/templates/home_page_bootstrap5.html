@@ -36,6 +36,13 @@
             <li><a class="nav-link" href="ueber_uns">Über uns</a></li>
         </ul>
 
+        <ul>
+            <li><a th:href="@{/searchByCategory/all}">Alle</a></li>
+            <li th:each="category : ${categories}">
+                <a th:href="@{/searchByCategory/{category}(category=${category})}"><span th:text="${category}"></span></a>
+            </li>
+        </ul>
+
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" th:action="@{/}">
             <input class="form-control form-control-dark" id="keyword" name="keyword" placeholder="Suche..."

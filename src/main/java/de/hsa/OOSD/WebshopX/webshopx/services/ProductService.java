@@ -1,8 +1,11 @@
 package de.hsa.OOSD.WebshopX.webshopx.services;
 
+import de.hsa.OOSD.WebshopX.webshopx.models.Category;
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * The Service class ProductService.
@@ -39,7 +42,7 @@ public class ProductService {
      *
      * @return All products from the repository.
      */
-    public Iterable<Product> getAllProducts() {
+    public List<Product> findAllProducts() {
         return productRepository.findAll();
     }
 
@@ -54,11 +57,19 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Iterable<Product> getFilteredProducts(String keyword) {
-        if (keyword != null) {
-            return productRepository.search(keyword); //todo is casesensitiv
-        }
-        return productRepository.findAll();
+//    public List<Product> getFilteredProducts(String keyword) {
+//        if (keyword != null) {
+//            return productRepository.search(keyword); //todo is casesensitiv
+//        }
+//        return productRepository.findAll();
+//    }
+
+    public List<Product> findByCategory(Category category){
+        return productRepository.findByCategory(category);
+    }
+
+    public List<Product> findBySearchQuery(String searchQuery) {
+        return productRepository.findBySearchQuery(searchQuery);
     }
 }
 

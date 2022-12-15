@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * The class Product representing a specific product.
@@ -34,7 +35,8 @@ public class Product {
      * The price of a specific product.
      */
     @NotNull
-    private float price;
+    private Float price;
+
     @NotNull
     private int date;
 
@@ -53,7 +55,7 @@ public class Product {
     private String imageUrl;
 
     //only for testing
-    public Product(String name, String artist, float price, int date, Category category, String description, String imageUrl) {
+    public Product(String name, String artist, Float price, int date, Category category, String description, String imageUrl) {
         this.name = name;
         this.artist = artist;
         this.price = price;
