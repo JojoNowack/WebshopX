@@ -45,3 +45,6 @@ jobs:
           distribution: 'temurin'
       - name: Run chmod to make gradlew executable
         run: chmod +x ./gradlew
+
+      - name: Test Gradle
+        run: ./gradlew test
