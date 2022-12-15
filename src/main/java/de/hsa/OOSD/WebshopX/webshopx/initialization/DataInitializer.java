@@ -1,4 +1,4 @@
-package de.hsa.OOSD.WebshopX.webshopx;
+package de.hsa.OOSD.WebshopX.webshopx.initialization;
 
 import de.hsa.OOSD.WebshopX.webshopx.models.Category;
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;

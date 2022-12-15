@@ -41,7 +41,7 @@ public class HomeController {
         model.addAttribute("products", products);
         model.addAttribute("categories", categoryService.getAllCategories());
 
-        return "home_page_bootstrap5";
+        return "home_page_bootstrap5_2";
     }
 
     @GetMapping("/searchByCategory/{category}")
@@ -57,6 +57,6 @@ public class HomeController {
         model.addAttribute("products", products);
         model.addAttribute("categories", categoryService.getAllCategories());
 
-        return "home_page_bootstrap5";
+        return "home_page_bootstrap5_2";
     }
 }
