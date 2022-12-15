@@ -32,6 +32,12 @@ jobs:
         with:
           arguments: build
 
+      - name upload:
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact.jar
+          path: ./build/libs/webshopx-0.1.1-firstSNAPSHOT.jar
+
   test:
 
     runs-on: ubuntu-latest
