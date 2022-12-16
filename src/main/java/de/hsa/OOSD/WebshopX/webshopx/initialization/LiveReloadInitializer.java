@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+
 @Configuration
 public class LiveReloadInitializer {
     @Autowired
