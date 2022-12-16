@@ -1,7 +1,6 @@
 package de.hsa.OOSD.WebshopX.webshopx.services;
 
 import de.hsa.OOSD.WebshopX.webshopx.models.Category;
-import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class CategoryService {
     }
 
 
-    public List<Category> getAllCategories() {
+    public List<Category> findAllCategories() {
         return categoryRepository.findAll();
     }
 

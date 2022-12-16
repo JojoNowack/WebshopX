@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.Collection;
 import java.util.List;
 
 
@@ -19,34 +18,28 @@ public class HomeController {
 
     private final ProductService productService;
     private final CategoryService categoryService;
+    private List<Product> products;
 
     public HomeController(ProductService productService, CategoryService categoryService) {
         this.productService = productService;
         this.categoryService = categoryService;
+        this.products = productService.findAllProducts();
     }
-
 
     @GetMapping("/")
     public String home(Model model, @Param("keyword") String keyword, @Param("selectedCategory") String catAsString) {
 
-        List <Product> products = productService.findBySearchQuery(keyword);
+        products = productService.findBySearchQuery(keyword);
 
-        if (products instanceof Collection) {
-            int size = ((Collection<?>) products).size();
-            if (size < 1) {
-                //System.out.println("no results");
-                model.addAttribute("noProducts", "Zu dieser Suche konnten leider keine Produkte gefunden werden");
-            }
-        }
         model.addAttribute("products", products);
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.findAllCategories());
 
         return "home_page_bootstrap5_2";
     }
 
     @GetMapping("/searchByCategory/{category}")
     public String searchByCategory(Model model, @PathVariable("category") String categoryName){
-        List<Product> products;
+
         if(categoryName.equals("all")){
             products = productService.findAllProducts();
         } else{
@@ -55,7 +48,19 @@ public class HomeController {
         }
 
         model.addAttribute("products", products);
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.findAllCategories());
+
+        return "home_page_bootstrap5_2";
+    }
+
+    @GetMapping("/sort/{item}/{direction}")
+    public String sortByItemUsingDirection(Model model, @PathVariable("item")
+    String item, @PathVariable("direction") String direction){
+
+        products = productService.sortProducts(products,item, direction);
+
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categoryService.findAllCategories());
 
         return "home_page_bootstrap5_2";
     }

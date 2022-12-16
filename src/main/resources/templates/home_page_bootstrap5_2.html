@@ -32,23 +32,41 @@
         <li><a class="nav-link" href="#">Über uns</a></li>
     </ul>
 
-
-    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" th:action="@{/}">
+    <form class="col-2 col-lg-auto mb-3 mb-lg-0 me-lg-3" th:action="@{/}">
         <input class="form-control form-control-dark" id="keyword" name="keyword" placeholder="Suche..."
                size="50"
                th:value="${keyword}" type="text"/>
     </form>
+
 
     <div class="col-md-3 text-end">
         <button class="btn btn-outline-primary me-2" type="button">Login</button>
         <button class="btn btn-primary" type="button">Registrieren</button>
     </div>
 </header>
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="dropdown col-2 ">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Sortieren nach:
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='price', direction='asc')}">Preis aufsteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='price', direction='desc')}">Preis absteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='year', direction='asc')}">Jahr aufsteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='year', direction='desc')}">Jahr absteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='title', direction='asc')}">Title aufsteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='title', direction='desc')}">Titel absteigend</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12 col-sm-3">
-            <div class="card bg-light mb-3">
+            <div class="card bg-light">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Kategorie</div>
                 <ul class="list-group category_block">
                     <li class="list-group-item"><a th:href="@{/searchByCategory/all}">Alle</a></li>
@@ -58,9 +76,12 @@
                 </ul>
             </div>
         </div>
-        <div class="col">
-            <div class="row gy-4 m-2 justify-content-center">
-                <div class="col m-2 justify-content-center" th:each="product: ${products}">
+        <div class="col ">
+            <div class="row gy-4 justify-content-center">
+                <div th:if="${#lists.isEmpty(products)}">
+                    <p>Zu dieser Suchanfrage wurden keine Treffer gefunden.</p>
+                </div>
+                <div class="col mlr-2 justify-content-center" th:each="product: ${products}">
                     <div class="card h-100" style="width: 15rem;">
                         <a class="nav-link" name="article" th:href="${product.name}">
                             <img alt="Card image cap" class="card-img-top" th:src="${product.imageUrl}">
