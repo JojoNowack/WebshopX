@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -32,7 +33,7 @@ public class ProductController {
     public String article(@PathVariable("name") String name, Model model) {
         Product chosenProduct = null;
 
-        Iterable<Product> allProducts = productService.getAllProducts();
+        List<Product> allProducts = productService.findAllProducts();
         for (Product product : allProducts) {
             System.out.println(name);
             System.out.println(product.getName());
