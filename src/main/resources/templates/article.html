@@ -38,12 +38,20 @@
     </div>
 </header>
 
+
+
     <div th:each="myproduct : ${product}">
         <img alt="Card image cap" class="card-img-top" th:src="${myproduct.imageUrl}">
+    </div>
+    <div>
         <div class="card-body">
-            <a class="card-title" th:text = "${myproduct.name}"></a>
-            <a class="card-text" th:text = "${myproduct.price}"></a>
-            <a href="#" class="btn btn-primary">Zum Einkaufswagen hinzufügen</a>
+            <p class="card-title" th:text = "${myproduct.name}"></p>
+        </div>
+        <div>
+            <p class="card-text" th:text = "${myproduct.price}"></p>
+        </div>
+        <div>
+            <p href="#" class="btn btn-primary">Zum Einkaufswagen hinzufügen</p>
         </div>
     </div>
 </body>
