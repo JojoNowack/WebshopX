@@ -42,10 +42,15 @@
     <ul>
         <div th:each="myproduct : ${customerProducts}">
             <li>
-                <img alt="Card image cap" class="card-img-top" th:src="${myproduct.imageUrl}">
+                <div>
+                    <img alt="Card image cap" class="card-img-top" th:src="${myproduct.imageUrl}">
+                </div>
+
                 <div class="card-body">
-                    <a class="card-title" th:text = "${myproduct.name}"></a>
-                    <a class="card-text" th:text = "${myproduct.price}"></a>
+                    <p class="card-title" th:text = "${myproduct.name}"></p>
+                </div>
+                <div>
+                    <p class="card-text" th:text = "${myproduct.price}"></p>
                 </div>
             </li>
         </div>
