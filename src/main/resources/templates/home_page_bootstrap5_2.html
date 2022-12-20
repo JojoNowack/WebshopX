@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -17,13 +17,16 @@
         height: 15vw;
         object-fit: cover;
     }
+
+
 </style>
 
 <body>
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom m-2">
-    <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" href="/static">
-        <h3> Bib X</h3>
-        <img alt="image bibx" height="auto" src="/images/logomy.jpg" width="50">
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom m-2"
+        th:fragment="header">
+    <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" href="/">
+
+        <img alt="image bibx" height="auto" src="/images/logomy.jpg" width="100">
     </a>
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -40,24 +43,38 @@
 
 
     <div class="col-md-3 text-end">
-        <button class="btn btn-outline-primary me-2" type="button">Login</button>
-        <button class="btn btn-primary" type="button">Registrieren</button>
+        <button class="btn btn-primary" type="button">
+            <a class="nav-link" href="warenkorb">Warenkorb</a>
+        </button>
+        <button class="btn btn-outline-primary me-2" type="button">
+            <a class="nav-link" href="login">Login</a>
+        </button>
+        <button class="btn btn-primary" type="button">
+            <a class="nav-link" href="register">Registrieren</a>
+        </button>
     </div>
 </header>
 <div class="container">
     <div class="row justify-content-end">
         <div class="dropdown col-2 ">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <a aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" href="#"
+               id="dropdownMenuLink" role="button">
                 Sortieren nach:
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='price', direction='asc')}">Preis aufsteigend</a></li>
-                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='price', direction='desc')}">Preis absteigend</a></li>
-                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='year', direction='asc')}">Jahr aufsteigend</a></li>
-                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='year', direction='desc')}">Jahr absteigend</a></li>
-                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='title', direction='asc')}">Title aufsteigend</a></li>
-                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='title', direction='desc')}">Titel absteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='price', direction='asc')}">Preis
+                    aufsteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='price', direction='desc')}">Preis
+                    absteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='year', direction='asc')}">Jahr
+                    aufsteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='year', direction='desc')}">Jahr
+                    absteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='title', direction='asc')}">Title
+                    aufsteigend</a></li>
+                <li><a class="dropdown-item" th:href="@{/sort/{item}/{direction}(item='title', direction='desc')}">Titel
+                    absteigend</a></li>
             </ul>
         </div>
     </div>
@@ -71,7 +88,8 @@
                 <ul class="list-group category_block">
                     <li class="list-group-item"><a th:href="@{/searchByCategory/all}">Alle</a></li>
                     <li class="list-group-item" th:each="category : ${categories}">
-                        <a th:href="@{/searchByCategory/{category}(category=${category})}"><span th:text="${category}"></span></a>
+                        <a th:href="@{/searchByCategory/{category}(category=${category})}"><span
+                                th:text="${category}"></span></a>
                     </li>
                 </ul>
             </div>
