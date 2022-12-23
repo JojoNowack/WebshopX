@@ -13,12 +13,56 @@
 <header th:insert="home_page_bootstrap5_2.html :: header"></header>
 
 <div th:each="myproduct : ${product}">
-  <img alt="Card image cap" class="card-img-top" th:src="${myproduct.imageUrl}">
+  <img alt="Card image cap" class="card-img-top" th:src="${myproduct.imageUrl}" id="pic">
   <div class="card-body">
-    <a class="card-title" th:text = "${myproduct.name}"></a>
-    <a class="card-text" th:text = "${myproduct.price}"></a>
-    <a class="btn btn-primary" href="#">Zum Einkaufswagen hinzuf&uuml;gen</a>
+    <h2 th:text = "${myproduct.name}"></h2>
+    <a th:text = "${myproduct.description}"></a>
+
+  </div>
+  <br><br>
+
+  <div>
+    <a>K&uuml;nstler: </a>
+    <a th:text = "${myproduct.artist}"></a>
+  </div>
+
+  <br>
+
+  <div>
+    <a>Datum der Fertigung: </a>
+    <a th:text = "${myproduct.date}"></a>
+  </div>
+
+  <div>
+    <a>Kategorie: </a>
+    <a th:text = "${myproduct.category}"></a>
+  </div>
+
+<br>
+
+  <div>
+    <a>Preis: </a>
+    <a th:text = "${myproduct.price}"></a>
+
+  </div>
+
+  <br>
+
+  <div>
+    <p class="btn btn-primary" href="#">Zum Einkaufswagen hinzuf&uuml;gen</p>
   </div>
 </div>
 </body>
+
+<style>
+
+  #pic {
+    float: left;
+    margin: 0 15px 0 0;
+    height: 30%;
+    width: 30%;
+  }
+
+</style>
+
 </html>
