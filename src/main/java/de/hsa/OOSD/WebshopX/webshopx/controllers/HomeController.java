@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,6 +20,8 @@ public class HomeController {
     private final ProductService productService;
     private final CategoryService categoryService;
     private List<Product> products;
+
+    private final ArrayList<Product> costumerProducts = new ArrayList<>();
 
     public HomeController(ProductService productService, CategoryService categoryService) {
         this.productService = productService;
@@ -40,17 +43,44 @@ public class HomeController {
     @GetMapping("/searchByCategory/{category}")
     public String searchByCategory(Model model, @PathVariable("category") String categoryName){
 
-        if(categoryName.equals("all")){
-            products = productService.findAllProducts();
-        } else{
-            Category category = categoryService.findCategoryByName(categoryName);
-            products = productService.findByCategory(category);
+        Product chosenProduct = null;
+
+        List<Product> allProducts = productService.findAllProducts();
+        for (Product product : allProducts) {
+            System.out.println(categoryName);
+            System.out.println(product.getName());
+            System.out.println(categoryName.equals(product.getName()));
+            if (categoryName.equals(product.getName())) {
+                chosenProduct = product;
+                break;
+            }
         }
 
-        model.addAttribute("products", products);
-        model.addAttribute("categories", categoryService.findAllCategories());
+        // article
+        if(chosenProduct != null){
+            costumerProducts.add(chosenProduct);
+            model.addAttribute("product", chosenProduct);
 
-        return "home_page_bootstrap5_2";
+
+            return "article";
+        }
+        //category
+        else {
+
+
+            if (categoryName.equals("all")) {
+                products = productService.findAllProducts();
+            } else {
+                Category category = categoryService.findCategoryByName(categoryName);
+                products = productService.findByCategory(category);
+            }
+
+            model.addAttribute("products", products);
+            model.addAttribute("categories", categoryService.findAllCategories());
+
+            return "home_page_bootstrap5_2";
+        }
+
     }
 
     @GetMapping("/sort/{item}/{direction}")
