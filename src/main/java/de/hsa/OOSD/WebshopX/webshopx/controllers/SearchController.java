@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class SearchController {
@@ -31,7 +33,9 @@ public class SearchController {
 
     @GetMapping("/searchByCategory/warenkorb")
     public String my_articles(Model model) {
-        model.addAttribute("customerProducts", costumerProducts);
+        Set<Product> set_costumer_products = new HashSet<Product>(costumerProducts);
+
+        model.addAttribute("customerProducts", set_costumer_products);
         return "warenkorb";
     }
 

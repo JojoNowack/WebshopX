@@ -5,11 +5,12 @@ import de.hsa.OOSD.WebshopX.webshopx.services.CategoryService;
 import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -30,7 +31,8 @@ public class ProductController {
 
 
     @GetMapping("/{name}")
-    public String article(@PathVariable("name") String name, Model model) {
+    public String searchByCategory(Model model, @PathVariable("name") String name) {
+
         Product chosenProduct = null;
 
         List<Product> allProducts = productService.findAllProducts();
@@ -43,15 +45,46 @@ public class ProductController {
                 break;
             }
         }
-        costumerProducts.add(chosenProduct);
+
         model.addAttribute("product", chosenProduct);
 
 
         return "article";
     }
 
+
+    @PostMapping("/myCart")
+    public String myCart(@RequestParam(name="addCart") String name, Model model) {
+        Product chosenProduct = null;
+
+        List<Product> allProducts = productService.findAllProducts();
+        for (Product product : allProducts) {
+            System.out.println(name);
+            System.out.println(product.getName());
+            System.out.println(name.equals(product.getName()));
+            if (name.equals(product.getName())) {
+                chosenProduct = product;
+                break;
+            }
+        }
+
+        // add to shopping cart
+        costumerProducts.add(chosenProduct);
+
+        // remove duplicates
+        Set<Product> tempSet = new HashSet<>(costumerProducts);
+        costumerProducts.clear();
+        costumerProducts.addAll(tempSet);
+
+
+        model.addAttribute("product", chosenProduct);
+
+        return "article";
+    }
+
     @GetMapping("/warenkorb")
     public String my_articles(Model model) {
+
         model.addAttribute("customerProducts", costumerProducts);
         return "warenkorb";
     }

@@ -38,7 +38,7 @@
     <a th:text = "${myproduct.category}"></a>
   </div>
 
-<br>
+  <br>
 
   <div>
     <a>Preis: </a>
@@ -48,10 +48,9 @@
 
   <br>
 
-  <form th:action="@{\myCart}" method="post">
-
-    <button id="addCart" name="addCart" th:value="${myproduct.name}" class="btn btn-primary">Zum Einkaufswagen hinzuf&uuml;gen </button>
-  </form>
+  <div>
+    <a id="addCart" name="addCart" class="btn btn-primary" th:href="${myproduct.name}">Zum Einkaufswagen hinzuf&uuml;gen </a>
+  </div>
 
 </body>
 

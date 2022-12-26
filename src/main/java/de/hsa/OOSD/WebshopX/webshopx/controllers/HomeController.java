@@ -7,8 +7,7 @@ import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,8 @@ public class HomeController {
     private final CategoryService categoryService;
     private List<Product> products;
 
+    private Product lastProduct = null;
+
     private final ArrayList<Product> costumerProducts = new ArrayList<>();
 
     public HomeController(ProductService productService, CategoryService categoryService) {
@@ -28,6 +29,8 @@ public class HomeController {
         this.categoryService = categoryService;
         this.products = productService.findAllProducts();
     }
+
+
 
     @GetMapping("/")
     public String home(Model model, @Param("keyword") String keyword, @Param("selectedCategory") String catAsString) {
@@ -38,6 +41,16 @@ public class HomeController {
         model.addAttribute("categories", categoryService.findAllCategories());
 
         return "home_page_bootstrap5_2";
+    }
+
+    @GetMapping("/articleAddToCart")
+    public String getShoppingCart(Model model){
+
+
+        costumerProducts.add(lastProduct);
+        model.addAttribute("product", lastProduct);
+
+        return "articleAddToCart";
     }
 
     @GetMapping("/searchByCategory/{category}")
@@ -58,8 +71,9 @@ public class HomeController {
 
         // article
         if(chosenProduct != null){
-            costumerProducts.add(chosenProduct);
+            lastProduct = chosenProduct;
             model.addAttribute("product", chosenProduct);
+            model.addAttribute("shoppingCart", costumerProducts);
 
 
             return "article";
