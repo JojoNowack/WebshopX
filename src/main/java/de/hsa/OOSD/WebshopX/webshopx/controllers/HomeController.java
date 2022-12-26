@@ -1,6 +1,7 @@
 package de.hsa.OOSD.WebshopX.webshopx.controllers;
 
 import de.hsa.OOSD.WebshopX.webshopx.models.Category;
+import de.hsa.OOSD.WebshopX.webshopx.models.CustomerItems;
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.services.CategoryService;
 import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
@@ -10,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -22,7 +25,8 @@ public class HomeController {
 
     private Product lastProduct = null;
 
-    private final ArrayList<Product> costumerProducts = new ArrayList<>();
+    private CustomerItems singletonCart = CustomerItems.getInstance();
+    private ArrayList<Product> costumerProducts = singletonCart.getCostumerProducts();
 
     public HomeController(ProductService productService, CategoryService categoryService) {
         this.productService = productService;
@@ -43,14 +47,30 @@ public class HomeController {
         return "home_page_bootstrap5_2";
     }
 
-    @GetMapping("/articleAddToCart")
-    public String getShoppingCart(Model model){
+    @PostMapping("/myCartHome")
+    public String myCart(@RequestParam(name="addCart") String name, Model model) {
+        Product chosenProduct = null;
 
+        List<Product> allProducts = productService.findAllProducts();
+        for (Product product : allProducts) {
+            System.out.println(name);
+            System.out.println(product.getName());
+            System.out.println(name.equals(product.getName()));
+            if (name.equals(product.getName())) {
+                chosenProduct = product;
+                break;
+            }
+        }
 
-        costumerProducts.add(lastProduct);
-        model.addAttribute("product", lastProduct);
+        // add to shopping cart
+        costumerProducts = singletonCart.addToCostumerProducts(chosenProduct);
 
-        return "articleAddToCart";
+        // remove duplicates
+        costumerProducts = singletonCart.removeDuplicates();
+
+        model.addAttribute("products", allProducts);
+
+        return "redirect:/";
     }
 
     @GetMapping("/searchByCategory/{category}")

@@ -108,7 +108,10 @@
                 <hr>
                 <p class="card-text text-center">Preis: <span th:text="${product.price}"> </span></p>
                 <hr>
-                <a class="btn btn-primary" href="#">Zum Einkaufswagen hinzuf&uuml;gen</a>
+                <form th:action="@{\myCartHome}" method="post">
+
+                  <button id="addCart" name="addCart" th:value="${product.name}" class="btn btn-primary">Zum Einkaufswagen hinzuf&uuml;gen </button>
+                </form>
               </div>
             </a>
           </div>

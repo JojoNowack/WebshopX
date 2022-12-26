@@ -1,5 +1,6 @@
 package de.hsa.OOSD.WebshopX.webshopx.controllers;
 
+import de.hsa.OOSD.WebshopX.webshopx.models.CustomerItems;
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.services.CategoryService;
 import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
@@ -25,9 +26,8 @@ public class ProductController {
     }
 
 
-
-
-    private final ArrayList<Product> costumerProducts = new ArrayList<>();
+    private CustomerItems singletonCart = CustomerItems.getInstance();
+    private ArrayList<Product> costumerProducts = singletonCart.getCostumerProducts();
 
 
     @GetMapping("/{name}")
@@ -69,12 +69,10 @@ public class ProductController {
         }
 
         // add to shopping cart
-        costumerProducts.add(chosenProduct);
+        costumerProducts = singletonCart.addToCostumerProducts(chosenProduct);
 
         // remove duplicates
-        Set<Product> tempSet = new HashSet<>(costumerProducts);
-        costumerProducts.clear();
-        costumerProducts.addAll(tempSet);
+        costumerProducts = singletonCart.removeDuplicates();
 
 
         model.addAttribute("product", chosenProduct);

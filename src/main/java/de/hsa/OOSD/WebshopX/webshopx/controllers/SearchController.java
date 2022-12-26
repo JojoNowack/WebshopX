@@ -1,5 +1,6 @@
 package de.hsa.OOSD.WebshopX.webshopx.controllers;
 
+import de.hsa.OOSD.WebshopX.webshopx.models.CustomerItems;
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.services.CategoryService;
 import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
@@ -27,7 +28,8 @@ public class SearchController {
 
 
 
-    private final ArrayList<Product> costumerProducts = new ArrayList<>();
+    private CustomerItems singletonCart = CustomerItems.getInstance();
+    private ArrayList<Product> costumerProducts = singletonCart.getCostumerProducts();
 
 
 
