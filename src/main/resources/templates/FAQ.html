@@ -4,38 +4,103 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FAQ</title>
-    <link href="/images/favicon.png" rel="icon" type="image/x-icon">
+    <link href="/images/logomy.jpg" rel="icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
           crossorigin="anonymous">
 </head>
 <body>
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom m-2">
-    <a href="/static" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <h3> Webshop X</h3>
-    </a>
+<header th:insert="home_page_bootstrap5_2.html :: header"></header>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/static" class="nav-link active" >Gemälde</a></li>
-        <li><a href="FAQ" class="nav-link">FAQs</a></li>
-        <li><a href="ueber_uns" class="nav-link">Über uns</a></li>
-    </ul>
+<h1 class="center">Wir sorgen uns um die Fragen aller Kunden</h1>
 
-    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control form-control-dark" placeholder="Suche..." aria-label="Search">
-    </form>
+<p class="center">
+    Die h&auml;ufigsten Fragen in einen &Uuml;berblick
+</p>
 
-    <div class="col-md-3 text-end">
-        <button type="button">
-            <a href="warenkorb" class="nav-link">Warenkorb</a>
-        </button>
-        <button type="button" class="btn btn-outline-primary me-2">
-            <a href="login" class="nav-link">Login</a>
-        </button>
-        <button type="button" class="btn btn-primary">
-            <a href="register" class="nav-link">Registrieren</a>
-        </button>
-    </div>
-</header>
+<br><br>
+
+<h3 class="center">Wie hoch sind die Lieferkosten?</h3>
+<p class="center">
+    Die Lieferkosten betragen 0 Euro weltweit und es gibt keinen Mindesteinkaufswert!
+</p>
+
+<br><br>
+
+<h3 class="center">Wie lange dauert die Lieferung?</h3>
+<table class="center">
+    <tr>
+        <th>Kontinent</th>
+        <th>Lieferzeit</th>
+    </tr>
+    <tr>
+        <th>Nordamerika</th>
+        <th>14 Tage</th>
+    </tr>
+    <tr>
+        <th>S&uuml;damerika</th>
+        <th>14 Tage</th>
+    </tr>
+    <tr>
+        <th>Europa</th>
+        <th>7 Tage</th>
+    </tr>
+    <tr>
+        <th>Afrika</th>
+        <th>14 Tage</th>
+    </tr>
+    <tr>
+        <th>Asien</th>
+        <th>14 bis 20 Tage</th>
+    </tr>
+    <tr>
+        <th>Australien</th>
+        <th>30 Tage</th>
+    </tr>
+    <tr>
+        <th>Antarktika</th>
+        <th>30 Tage</th>
+    </tr>
+</table>
+
+<br><br>
+
+<h3 class="center">Ist der Zustand der Kunstwerke gut?</h3>
+<p class="center">
+    Wir achten auf einen guten Zustand der Kunstwerke, indem wir die Ware vor dem Verkauf auf ihren Zustand pr&uuml;fen!
+</p>
+
+<br><br>
+
+<h3 class="center">Wie werden die Kunstwerke &uuml;berpr&uuml;ft?</h3>
+<p class="center">
+    Alle Kunstwerke, die zum Verkauf stehen, werden zu uns geschickt und vor Ort &uuml;berpr&uuml;ft.
+    Sollte das Kunstwerk nicht unseren Richtlinien entsprechen, wird es nicht zum Verkauf angeboten.
+</p>
+
 </body>
+
+<style>
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3 {
+    line-height: 100%;
+}
+
+p {
+    line-height: 200%;
+}
+
+table {
+
+}
+
+a {
+    line-height: 200%;
+}
+</style>
 </html>

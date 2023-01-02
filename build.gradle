@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'de.hsa.OOSD.WebshopX'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.1-firstSNAPSHOT'
 sourceCompatibility = '17'
 
 configurations {
