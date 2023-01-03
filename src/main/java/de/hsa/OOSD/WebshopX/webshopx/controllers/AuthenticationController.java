@@ -14,7 +14,6 @@ import javax.validation.Valid;
 
 @Controller
 public class AuthenticationController {
-
     private final UserService userService;
 
     public AuthenticationController(UserService userService) {
@@ -23,14 +22,14 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     public String loginForm() {
-        return "login";
+        return "authentication/login";
     }
 
     @GetMapping("register")
     public String showRegistrationForm(Model model){
         UserDto user = new UserDto();
         model.addAttribute("user", user);
-        return "register";
+        return "authentication/register";
     }
 
     @PostMapping("/register/save")
@@ -43,7 +42,7 @@ public class AuthenticationController {
         }
         if (result.hasErrors()) {
             model.addAttribute("user", user);
-            return "register";
+            return "authentication/register";
         }
         userService.saveUser(user);
         return "redirect:/register?success";

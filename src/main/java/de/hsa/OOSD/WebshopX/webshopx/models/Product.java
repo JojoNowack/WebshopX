@@ -7,49 +7,30 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
-/**
- * The class Product representing a specific product.
- */
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
+@Table(name="products")
 public class Product {
-
-    /**
-     * The id of a specific product.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * The name of a specific product.
-     */
     @NotNull
     private String name;
     @NotNull
     private String artist;
 
-
-    /**
-     * The price of a specific product.
-     */
     @NotNull
     private Float price;
 
     @NotNull
     String date;
 
-
     @ManyToOne
     private Category category;
 
-
-    /**
-     * The description of a specific product.
-     */
     @NotNull
     private String description;
 
@@ -65,7 +46,6 @@ public class Product {
         this.description = description;
         this.imageUrl = imageUrl;
     }
-
 }
 
 

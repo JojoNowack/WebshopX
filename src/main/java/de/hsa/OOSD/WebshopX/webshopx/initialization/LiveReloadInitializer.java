@@ -13,7 +13,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 public class LiveReloadInitializer {
     @Autowired
     private ThymeleafProperties properties;
-
     @Value("${spring.thymeleaf.templates_root:}")
     private String templatesRoot;
 
@@ -26,5 +25,4 @@ public class LiveReloadInitializer {
         resolver.setCacheable(properties.isCache());
         return resolver;
     }
-
 }

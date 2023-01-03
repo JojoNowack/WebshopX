@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ProductController {
-
     private final ProductService productService;
     private final CategoryService categoryService;
 

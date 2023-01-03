@@ -13,7 +13,6 @@ import java.util.*;
 
 @Controller
 public class HomeController {
-
     private static ProductService productService;
     private static CategoryService categoryService;
     public static List<Product> products;
@@ -43,13 +42,13 @@ public class HomeController {
 
     public static void addAttributesForHome(Model model) {
         List<String> years = new ArrayList<>(Arrays.asList("1300-1399",
-                                                           "1400-1499",
-                                                           "1500-1599",
-                                                           "1600-1699",
-                                                           "1700-1799",
-                                                           "1800-1899",
-                                                           "1900-1999",
-                                                           "2000-heute"));
+                "1400-1499",
+                "1500-1599",
+                "1600-1699",
+                "1700-1799",
+                "1800-1899",
+                "1900-1999",
+                "2000-heute"));
         model.addAttribute("products", products);
         model.addAttribute("categories", categoryService.findAllCategories());
         model.addAttribute("years", years);

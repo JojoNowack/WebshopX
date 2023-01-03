@@ -1,22 +1,19 @@
 package de.hsa.OOSD.WebshopX.webshopx.models;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "categories")
 public class Category {
 
-    /**
-     * The id of a specific category.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,15 +24,13 @@ public class Category {
     @NotNull
     private String name;
 
-
-    public Category(CategoryType categoryType, String name){
+    public Category(CategoryType categoryType, String name) {
         this.categoryType = categoryType;
         this.name = name;
     }
 
-
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 

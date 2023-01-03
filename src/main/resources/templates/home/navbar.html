@@ -10,18 +10,18 @@
     }
 </style>
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom m-2">
-    <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" href="/">
+    <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" href="/static">
 
-        <img alt="image bibx" height="60" src="/images/logomy.jpg" width="60">
+        <img alt="image bibx" height="60" src="/images/design/logo.jpg" width="60">
     </a>
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a aria-current="page" class="nav-link active text-black" href="/">Gem&auml;lde</a></li>
+        <li><a aria-current="page" class="nav-link active text-black" href="/static">Gem&auml;lde</a></li>
         <li><a class="nav-link active text-black" href="faq">FAQs</a></li>
         <li><a class="nav-link active text-black" href="about">&Uuml;ber uns</a></li>
     </ul>
 
-    <form class="col-2 col-lg-auto mb-3 mb-lg-0 me-lg-3" th:action="@{/}">
+    <form class="col-2 col-lg-auto mb-3 mb-lg-0 me-lg-3" th:action="@{/static}">
         <input class="form-control form-control-dark" id="keyword" name="keyword" placeholder="Suche..."
                size="50"
                th:value="${keyword}" type="text"/>

@@ -15,12 +15,10 @@ import java.util.Arrays;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
-
     private final ProductService productService;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-
     private final PasswordEncoder passwordEncoder;
 
     public DataInitializer(ProductService productService, CategoryRepository categoryRepository, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
@@ -51,7 +49,6 @@ public class DataInitializer implements CommandLineRunner {
         productService.save(new Product("König Max I. Joseph", "Herr Deutsch", 92522.0f, "1806", Malerei, "1964 durch das Bayerische Staatsministerium des Inneren uebertragen", "/images/13449.jpg"));
         productService.save(new Product("Abendmahl", "GUGLIELMUS PALUDANUS", 24578.0f, "1560", Plastik, "Erworben 1807 als Saekularisationsgut aus der Dominikanerkirche Augsburg", "/images/B619.jpg"));
         productService.save(new Product("Gegen den Wind Schreitender", "ADOLF HÖLZEL", 90896.0f, "1925", Grafik, "1964 als Schenkung von Sofie und Emanuel Fohn erworben", "/images/13501.jpg"));
-
         productService.save(new Product("Die Madonna Tempi", "RAFFAEL", 28179.0f, "1507", Malerei, "1829 für König Ludwig I. aus dem Hause Tempi in Florenz erworben", "/images/796.jpg"));
         productService.save(new Product("Kirchliche Szene", "RAFFAEL", 74559.0f, "1722", Grafik, "Stich von Francesco Aquila nach Raffaels Borgobrand", "/images/19.jpg"));
         productService.save(new Product("Kauernde", "AUGUSTE RODIN", 84581.0f, "1880", Plastik, "1912 als Schenkung im Rahmen der Tschudi-Spende erworben", "/images/58.jpg"));

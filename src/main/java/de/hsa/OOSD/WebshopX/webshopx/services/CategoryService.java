@@ -8,14 +8,11 @@ import java.util.List;
 
 @Service
 public class CategoryService {
-
-
     private final CategoryRepository categoryRepository;
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-
 
     public List<Category> findAllCategories() {
         return categoryRepository.findAll();
@@ -25,9 +22,7 @@ public class CategoryService {
         return categoryRepository.findCategoryByName(name);
     }
 
-
     public void save(Category category) {
         categoryRepository.save(category);
     }
-
 }
