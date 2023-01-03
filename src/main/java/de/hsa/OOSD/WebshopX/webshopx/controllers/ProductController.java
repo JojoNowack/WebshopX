@@ -1,17 +1,13 @@
 package de.hsa.OOSD.WebshopX.webshopx.controllers;
 
-import de.hsa.OOSD.WebshopX.webshopx.models.CustomerItems;
+import de.hsa.OOSD.WebshopX.webshopx.models.Category;
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.services.CategoryService;
 import de.hsa.OOSD.WebshopX.webshopx.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller
@@ -25,92 +21,35 @@ public class ProductController {
         this.categoryService = categoryService;
     }
 
-
-    private CustomerItems singletonCart = CustomerItems.getInstance();
-    private ArrayList<Product> costumerProducts = singletonCart.getCostumerProducts();
-
-
-    @GetMapping("/{name}")
-    public String searchByCategory(Model model, @PathVariable("name") String name) {
-
-        Product chosenProduct = null;
-
-        List<Product> allProducts = productService.findAllProducts();
-        for (Product product : allProducts) {
-            System.out.println(name);
-            System.out.println(product.getName());
-            System.out.println(name.equals(product.getName()));
-            if (name.equals(product.getName())) {
-                chosenProduct = product;
-                break;
-            }
-        }
-
-        model.addAttribute("product", chosenProduct);
-
-
-        return "article";
+    @GetMapping("/product/{productId}")
+    public String product(Model model, @PathVariable("productId") Long productId){
+        Product product = productService.findProductById(productId);
+        model.addAttribute(product);
+        return "product";
     }
 
-
-    @PostMapping("/myCart")
-    public String myCart(@RequestParam(name="addCart") String name, Model model) {
-        Product chosenProduct = null;
-
-        List<Product> allProducts = productService.findAllProducts();
-        for (Product product : allProducts) {
-            System.out.println(name);
-            System.out.println(product.getName());
-            System.out.println(name.equals(product.getName()));
-            if (name.equals(product.getName())) {
-                chosenProduct = product;
-                break;
-            }
-        }
-
-        // add to shopping cart
-        costumerProducts = singletonCart.addToCostumerProducts(chosenProduct);
-
-        // remove duplicates
-        costumerProducts = singletonCart.removeDuplicates();
-
-
-        model.addAttribute("product", chosenProduct);
-
-        return "article";
+    @GetMapping("/filter/category={category}")
+    public String filterByCategory(Model model, @PathVariable("category") String categoryName) {
+        Category category = categoryService.findCategoryByName(categoryName);
+        HomeController.products = productService.findByCategory(category);
+        HomeController.addAttributesForHome(model);
+        return "home";
     }
 
-    @GetMapping("/warenkorb")
-    public String my_articles(Model model) {
-
-        model.addAttribute("customerProducts", costumerProducts);
-        return "warenkorb";
+    @GetMapping("/filter/period={year}")
+    public String filterByYear(Model model, @PathVariable("year") String year) {
+        HomeController.products = productService.findByYear(year);
+        HomeController.addAttributesForHome(model);
+        return "home";
     }
 
-
-    @GetMapping("/register")
-    public String register(Model model) {
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
-
-    @GetMapping("/gemaelde")
-    public String gemealde(Model model) {
-        return "gemealde";
-    }
-
-    @GetMapping("/FAQ")
-    public String FAQ(Model model) {
-        return "FAQ";
-    }
-
-    @GetMapping("/ueber_uns")
-    public String ueber_uns(Model model) {
-        return "ueber_uns";
+    @GetMapping("/sort/{item}/{direction}")
+    public String sortByItemUsingDirection(Model model,
+                                           @PathVariable("item") String item,
+                                           @PathVariable("direction") String direction) {
+        HomeController.products = productService.sortProducts(HomeController.products, item, direction);
+        HomeController.addAttributesForHome(model);
+        return "home";
     }
 
 }
