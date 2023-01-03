@@ -30,6 +30,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findDistinctByArtistContainingIgnoreCaseOrNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String artist, String name, String description);
 
+    List<Product> findProductsByDateStartingWith(String prefix);
+
     List<Product> findByCategory(Category category);
 
     @Query("SELECT p FROM Product p WHERE TO_CHAR(p.date) LIKE %:date%")

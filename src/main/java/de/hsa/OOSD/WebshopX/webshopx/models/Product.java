@@ -1,17 +1,19 @@
 package de.hsa.OOSD.WebshopX.webshopx.models;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+
 
 /**
  * The class Product representing a specific product.
  */
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Product {
 
@@ -38,7 +40,7 @@ public class Product {
     private Float price;
 
     @NotNull
-    private int date;
+    String date;
 
 
     @ManyToOne
@@ -54,8 +56,7 @@ public class Product {
     @NotNull
     private String imageUrl;
 
-    //only for testing
-    public Product(String name, String artist, Float price, int date, Category category, String description, String imageUrl) {
+    public Product(String name, String artist, Float price, String date, Category category, String description, String imageUrl) {
         this.name = name;
         this.artist = artist;
         this.price = price;

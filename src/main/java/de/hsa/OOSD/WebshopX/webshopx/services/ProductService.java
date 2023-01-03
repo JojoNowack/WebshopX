@@ -19,7 +19,7 @@ public class ProductService {
     private final String PRICE = "price";
     private final String YEAR = "year";
     private final String TITLE = "title";
-    private final  String DESCENDING = "desc";
+    private final String DESCENDING = "desc";
 
     /**
      * The productRepository of the service.
@@ -41,7 +41,7 @@ public class ProductService {
      * @param productId The id of a specific product.
      * @return The product of the given productId.
      */
-    public Product getProductById(Long productId) {
+    public Product findProductById(Long productId) {
         return productRepository.findProductById(productId);
     }
 
@@ -71,6 +71,11 @@ public class ProductService {
 
     public List<Product> findBySearchQuery(String searchQuery) {
         return productRepository.findBySearchQuery(searchQuery);
+    }
+
+    public List<Product> findByYear(String year) {
+        String prefix = year.substring(0,2);
+        return productRepository.findProductsByDateStartingWith(prefix);
     }
 
     public List<Product> sortProducts(List<Product> products, String item, String direction) {
