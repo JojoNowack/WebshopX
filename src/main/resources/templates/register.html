@@ -1,90 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register</title>
-  <link href="/images/logomy.jpg" rel="icon" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-        crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>ArtX Registrierung</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<header th:insert="home_page_bootstrap5_2.html :: header"></header>
+<style>
+    .card {
+        opacity: 0.93;
+        background: white;
+        border-radius: 1rem;
+    }
 
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+    #blank-register{
+        opacity: 0.0;
+    }
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+    .alert{
+        opacity: 0.98;
+        border-radius: 1rem;
+    }
 
-                <form class="mx-1 mx-md-4">
+    html {
+        height: 100%;
+    }
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" />
-                      <label class="form-label" for="form3Example1c">Your Name</label>
+    body {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        background-image: url("/images/art_x_bg_2.jpg");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: left top;
+    }
+</style>
+<section class="vh-100">
+    <div class="container py-3 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-sm">
+                    <div class="card-body pb-2 px-5 text-center">
+                        <h3 class="card-title display-4 mb-1">ArtX</h3>
+                        <h3 class="card-title display-6 mb-4 text-muted">Mitglied werden</h3>
+                        <div class="form-outline mb-4 px-3">
+                            <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+
+                                <div class="form-group mb-3 text-start">
+                                    <label class="form-label">Vorname</label>
+                                    <input class="form-control"
+                                           id="firstName"
+                                           name="firstName"
+                                           placeholder="Vorname eingeben"
+                                           th:field="*{firstName}"
+                                           type="text"
+                                    />
+                                    <p th:errors="*{firstName}" class="text-danger"
+                                       th:if="${#fields.hasErrors('firstName')}">
+                                    </p>
+                                </div>
+
+                                <div class="form-group mb-3 text-start">
+                                    <label class="form-label">Nachname</label>
+                                    <input class="form-control"
+                                           id="lastName"
+                                           name="lastName"
+                                           placeholder="Nachname eingeben"
+                                           th:field="*{lastName}"
+                                           type="text"
+                                    />
+                                    <p th:errors="*{lastName}" class="text-danger"
+                                       th:if="${#fields.hasErrors('lastName')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3 text-start">
+                                    <label class="form-label">Email</label>
+                                    <input class="form-control"
+                                           id="email"
+                                           name="email"
+                                           placeholder="Email eingeben"
+                                           th:field="*{email}"
+                                           type="email"
+                                    />
+                                    <p th:errors="*{email}" class="text-danger"
+                                       th:if="${#fields.hasErrors('email')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3 text-start">
+                                    <label class="form-label ">Passwort</label>
+                                    <input class="form-control"
+                                           id="password"
+                                           name="password"
+                                           placeholder="Passwort eingeben"
+                                           th:field="*{password}"
+                                           type="password"
+                                    />
+                                    <p th:errors="*{password}" class="text-danger"
+                                       th:if="${#fields.hasErrors('password')}">
+                                    </p>
+                                </div>
+
+                                <div class="form-group mb-2 text-center">
+                                    <button class="btn btn-primary" type="submit">Registrieren</button>
+                                </div>
+                                <span>Bereits registriert? <a class="text-dark" href="/" th:href="@{/login}">Hier einloggen</a></span>
+                            </form>
+                        </div>
                     </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" />
-                      <label class="form-label" for="form3Example3c">Your Email</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" class="form-control" />
-                      <label class="form-label" for="form3Example4c">Password</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4cd" class="form-control" />
-                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
-                    </div>
-                  </div>
-
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                    <label class="form-check-label" form="form2Example3">
-                      I agree all statements in <a href="#!">Terms of service</a>
-                    </label>
-                  </div>
-
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">
-                      <a href="/static" class="nav-link">Register</a>
-                    </button>
-                  </div>
-
-                </form>
-
-              </div>
-              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                     class="img-fluid" alt="Sample image">
-
-              </div>
-            </div>
-          </div>
+                </div>
+                <div th:if="${param.success}">
+                    <div class="text-center alert alert-success mt-5">Du wurdest erfolgreich registriert! <a class="text-success" th:href="@{/login}">Direkt loslegen</a></div>
+                </div>
+                <div th:unless="${param.success}"><div id="blank-register" class="text-center alert alert-light mt-5">blank</div></div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 </body>
 </html>
