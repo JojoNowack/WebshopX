@@ -33,4 +33,20 @@ public class User {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles = new ArrayList<>();
+
+    @OneToMany
+    @Column
+    private List<Product> cartItems = new ArrayList<>();
+
+    public void addCartItem(Product product){
+        this.cartItems.add(product);
+    }
+
+    public void removeCartItem(Product product){
+        this.cartItems.remove(product);
+    }
+
+    public boolean containsCartItem(Product product){
+        return cartItems.contains(product);
+    }
 }

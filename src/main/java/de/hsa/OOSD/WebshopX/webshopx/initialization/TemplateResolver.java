@@ -10,7 +10,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 
 @Configuration
-public class LiveReloadInitializer {
+public class TemplateResolver {
     @Autowired
     private ThymeleafProperties properties;
     @Value("${spring.thymeleaf.templates_root:}")

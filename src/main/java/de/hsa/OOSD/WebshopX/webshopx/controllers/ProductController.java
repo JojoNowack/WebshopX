@@ -24,7 +24,7 @@ public class ProductController {
     public String product(Model model, @PathVariable("productId") Long productId){
         Product product = productService.findProductById(productId);
         model.addAttribute(product);
-        return "product";
+        return "home/product";
     }
 
     @GetMapping("/filter/category={category}")
@@ -32,14 +32,14 @@ public class ProductController {
         Category category = categoryService.findCategoryByName(categoryName);
         HomeController.products = productService.findByCategory(category);
         HomeController.addAttributesForHome(model);
-        return "home";
+        return "home/home";
     }
 
     @GetMapping("/filter/period={year}")
     public String filterByYear(Model model, @PathVariable("year") String year) {
         HomeController.products = productService.findByYear(year);
         HomeController.addAttributesForHome(model);
-        return "home";
+        return "home/home";
     }
 
     @GetMapping("/sort/{item}/{direction}")
@@ -48,7 +48,7 @@ public class ProductController {
                                            @PathVariable("direction") String direction) {
         HomeController.products = productService.sortProducts(HomeController.products, item, direction);
         HomeController.addAttributesForHome(model);
-        return "home";
+        return "home/home";
     }
 
 }

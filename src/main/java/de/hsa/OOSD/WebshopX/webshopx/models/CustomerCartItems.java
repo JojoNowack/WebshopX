@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CustomerItems {
+public class CustomerCartItems {
 
     private final ArrayList<Product> costumerProducts = new ArrayList<>();
 
-    private CustomerItems() {
+    private CustomerCartItems() {
 
     }
-    private static CustomerItems instance;
+    private static CustomerCartItems instance;
 
-    public static CustomerItems getInstance() {
+    public static CustomerCartItems getInstance() {
 
         if(instance == null){
-            instance = new CustomerItems();
+            instance = new CustomerCartItems();
         }
 
         return instance;

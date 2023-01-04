@@ -20,7 +20,7 @@
 </style>
 
 <body>
-<div th:insert="navbar.html"></div>
+<div th:insert="home/navbar.html"></div>
 <div class="container">
     <div class="row">
         <div class="col d-flex justify-content-end">
@@ -49,7 +49,7 @@
 
     <div class="row row-cols-2 mt-4">
         <div class="col-2">
-            <div th:insert="categories.html"></div>
+            <div th:insert="home/categories.html"></div>
         </div>
         <div class="col-10">
                 <div th:if="${#lists.isEmpty(products)}">
@@ -64,18 +64,15 @@
                 <div class="col-3" th:each="product: ${products}">
                     <div class="card-group h-100">
                         <div class="card text-center h-100">
-                            <a class="nav-link" th:href="@{/product/{id}(id=${product.id})}">
+
                                 <img alt="Card image cap" class="card-img-top" th:src="${product.imageUrl}">
                                 <div class="card-footer">
                                     <h6 class="card-title text-center text-truncate" th:text="${product.name}"></h6>
-                                    <form th:action="@{\myCartHome}" method="post">
 
-                                        <button id="addCart" name="addCart" th:value="${product.name}"
-                                                class="btn btn-sm btn-outline-primary"><i class="bi-cart-fill me-1"></i>
-                                        </button>
-                                    </form>
+                                        <a class="btn btn-sm btn-outline-primary" th:href="@{/{userId}/toggle-cart/{productId}(userId=${user.id},productId=${product.id})}"><i class="bi-cart-fill me-1"></i>
+                                        </a>
                                 </div>
-                            </a>
+
                         </div>
                     </div>
                 </div>

@@ -37,6 +37,7 @@ public class Product {
     @NotNull
     private String imageUrl;
 
+
     public Product(String name, String artist, Float price, String date, Category category, String description, String imageUrl) {
         this.name = name;
         this.artist = artist;

@@ -10,12 +10,12 @@
     <script src="http://localhost:35729/livereload.js"></script>
 </head>
 <body>
-<div th:insert="navbar.html"></div>
+<div th:insert="home/navbar.html"></div>
 <section>
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
-                                       th:src="${product.imageUrl}"></div>
+            <div class="col-md-6"><!--<img class="card-img-top mb-5 mb-md-0"
+                                       th:src="${product.imageUrl}">--></div>
             <div class="col">
                 <h1 class="display-6 fw-bolder"><span th:text="${product.name}"></span></h1>
                 <div class="fs-5 mb-5">
