@@ -19,14 +19,17 @@ public class Product {
 
     @NotNull
     private String name;
+
+    @NotNull
+    private Status status;
     @NotNull
     private String artist;
 
     @NotNull
-    private Float price;
+    private Double price;
 
     @NotNull
-    String date;
+    String publicationYear;
 
     @ManyToOne
     private Category category;
@@ -38,15 +41,34 @@ public class Product {
     private String imageUrl;
 
 
-    public Product(String name, String artist, Float price, String date, Category category, String description, String imageUrl) {
+    public Product(String name, String artist, Double price, String publicationYear, Category category, String description, String imageUrl) {
         this.name = name;
         this.artist = artist;
         this.price = price;
-        this.date = date;
+        this.publicationYear = publicationYear;
         this.category = category;
         this.description = description;
         this.imageUrl = imageUrl;
+
+        this.status = Status.AVAILABLE;
     }
+
+    public boolean isAvailable(){
+        return status == Status.AVAILABLE;
+    }
+
+    public void toggleStatus(){
+        if(status == Status.AVAILABLE){
+            status = Status.SOLD;
+        } else{
+            status = Status.AVAILABLE;
+        }
+    }
+
+    public enum Status{
+        AVAILABLE, SOLD
+    }
+
 }
 
 

@@ -4,6 +4,9 @@ import de.hsa.OOSD.WebshopX.webshopx.models.Role;
 import de.hsa.OOSD.WebshopX.webshopx.models.User;
 import de.hsa.OOSD.WebshopX.webshopx.repositories.RoleRepository;
 import de.hsa.OOSD.WebshopX.webshopx.repositories.UserRepository;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +69,19 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
     }
 
+    @Override
+    public User getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String email = authentication.getName();
+            User user = findByEmail(email);
+            return user;
+        }
+
+        return null;
+    }
+
     private UserDto convertEntityToDto(User user){
         UserDto userDto = new UserDto();
         String[] name = user.getName().split(" ");
@@ -80,4 +96,5 @@ public class UserServiceImpl implements UserService {
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
+
 }

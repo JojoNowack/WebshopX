@@ -12,16 +12,17 @@ import java.util.List;
 import java.util.Set;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
     Product findProductById(Long productId);
 
     List<Product> findDistinctByArtistContainingIgnoreCaseOrNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String artist, String name, String description);
 
-    List<Product> findProductsByDateStartingWith(String prefix);
+    List<Product> findProductsByPublicationYearStartingWith(String prefix);
 
     List<Product> findByCategory(Category category);
 
-    @Query("SELECT p FROM Product p WHERE TO_CHAR(p.date) LIKE %:date%")
-    List<Product> findByDateContaining(@Param("date")String date);
+    @Query("SELECT p FROM Product p WHERE TO_CHAR(p.publicationYear) LIKE %:publicationYear%")
+    List<Product> findByPublicationYearContaining(@Param("publicationYear")String date);
 
     @Query("SELECT p FROM Product p WHERE TO_CHAR(p.price) LIKE %:price%")
     List<Product> findByPriceContaining(@Param("price") String price);
@@ -29,7 +30,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     default List<Product> findBySearchQuery(String searchQuery){
         if (searchQuery != null) {
             List<Product> resultOne = findDistinctByArtistContainingIgnoreCaseOrNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchQuery, searchQuery, searchQuery);
-            List<Product> resultTwo = findByDateContaining(searchQuery);
+            List<Product> resultTwo = findByPublicationYearContaining(searchQuery);
             List<Product> resultThree = findByPriceContaining(searchQuery);
 
             Set<Product> resultSet = new HashSet<>(resultOne);

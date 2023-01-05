@@ -43,9 +43,9 @@ public class ProductService {
         return productRepository.findBySearchQuery(searchQuery);
     }
 
-    public List<Product> findByYear(String year) {
-        String prefix = year.substring(0,2);
-        return productRepository.findProductsByDateStartingWith(prefix);
+    public List<Product> findByPublicationYear(String publicationYear) {
+        String prefix = publicationYear.substring(0,2);
+        return productRepository.findProductsByPublicationYearStartingWith(prefix);
     }
 
     public List<Product> sortProducts(List<Product> products, String item, String direction) {
@@ -56,7 +56,7 @@ public class ProductService {
                 productsSorted = products.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
             }
             case YEAR -> {
-                productsSorted = products.stream().sorted(Comparator.comparing(Product::getDate)).collect(Collectors.toList());
+                productsSorted = products.stream().sorted(Comparator.comparing(Product::getPublicationYear)).collect(Collectors.toList());
             }
             case TITLE -> {
                 productsSorted = products.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
@@ -67,5 +67,9 @@ public class ProductService {
         if (direction.equals(DESCENDING)) Collections.reverse(productsSorted);
 
         return productsSorted;
+    }
+
+    public double getSumOfPrices(List<Product> products){
+        return products.stream().mapToDouble(Product::getPrice).sum();
     }
 }
