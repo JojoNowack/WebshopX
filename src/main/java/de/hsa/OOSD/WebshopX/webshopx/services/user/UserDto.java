@@ -1,27 +1,30 @@
 package de.hsa.OOSD.WebshopX.webshopx.services.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-@Getter
-@Setter
+/**
+ * This is used for user registration.
+ */
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto
-{
+public class UserDto {
+
     private Long id;
-    @NotEmpty
+
+    @NotEmpty(message = "Feld Vorname darf nicht leer sein")
     private String firstName;
-    @NotEmpty
+
+    @NotEmpty(message = "Feld Nachname darf nicht leer sein")
     private String lastName;
-    @NotEmpty(message = "Email should not be empty")
+
+    @NotEmpty(message = "Feld E-Mail Adresse darf nicht leer sein")
     @Email
     private String email;
-    @NotEmpty(message = "Password should not be empty")
+
+    @NotEmpty(message = "Feld Passwort darf nicht leer sein")
     private String password;
 }

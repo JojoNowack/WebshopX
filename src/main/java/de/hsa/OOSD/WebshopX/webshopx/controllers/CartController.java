@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class CartController {
 
     private final ProductService productService;
+
     private final UserService userService;
+
     private final EmailService emailService;
 
+    private User user;
 
     public CartController(ProductService productService, UserService userService, EmailService emailService) {
         this.productService = productService;
@@ -29,61 +31,61 @@ public class CartController {
     }
 
     @GetMapping("/toggle-cart/{productId}")
-    public String toggleCartItem(HttpServletRequest request,
-                                 @PathVariable("productId") Long productId) {
+    public String toggleCartItem(HttpServletRequest request, @PathVariable("productId") Long productId) {
 
         Product product = productService.findProductById(productId);
-        User user = userService.getCurrentUser();
+        user = userService.getCurrentUser();
 
-        if (!user.containsCartItem(product)) {
+        if (!user.cartContainsItem(product)) {
             user.addCartItem(product);
         } else {
             user.removeCartItem(product);
         }
-        userService.saveUser(user);
+
+        userService.save(user);
 
         return "redirect:" + request.getHeader("Referer");
     }
 
     @GetMapping("/cart")
     public String cart(Model model) {
-        User user = userService.getCurrentUser();
+        user = userService.getCurrentUser();
 
         model.addAttribute("user", user);
-        model.addAttribute("sum", productService.getSumOfPrices(user.getCartItems()));
+        model.addAttribute("sum", productService.getSumOfProductPrices(user.getCartItems()));
 
         return "home/cart";
     }
 
     @GetMapping("/checkout")
     public String checkout(Model model) {
-        User user = userService.getCurrentUser();
+        user = userService.getCurrentUser();
 
-        if (user.getCartItems() == null && user.getCartItems().size() == 0){
-            return "home/home";
+        // Redirect user to his cart if he trys to manually open the checkout page
+        if (user.getCartItems() == null || user.getCartItems().size() == 0) {
+            return "redirect:/cart";
         }
 
-        List<Product> cartItems = user.getCartItems();
-
         model.addAttribute("user", user);
-        model.addAttribute("sum", productService.getSumOfPrices(user.getCartItems()));
-        model.addAttribute("cartItems", cartItems);
+        model.addAttribute("sum", productService.getSumOfProductPrices(user.getCartItems()));
+        model.addAttribute("cartItems", user.getCartItems());
 
+        // Try to send the confirmation mail
+        try {
+            emailService.sendEmail(user.getEmail(), user.getCartItems());
 
-        // try to send the confirmation mail
-        try{
-            emailService.setBillContent(cartItems, productService.getSumOfPrices(cartItems));
-            emailService.sendEmail(user.getEmail());
-
+            // If sending was successfully, toggle the status of every bought item
             for (Product item : user.getCartItems()) {
                 item.toggleStatus();
                 productService.save(item);
             }
 
+            // Clear the user cart and save the updated user entity
             user.setCartItems(new ArrayList<>());
-            userService.saveUser(user);
+            userService.save(user);
 
-        } catch (Exception e){
+        } catch (Exception e) {
+            // If sending failed (e.g. internet connection lost), display an error message
             return "home/order_failed";
         }
 

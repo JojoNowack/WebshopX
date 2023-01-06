@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ProductController {
+
     private final ProductService productService;
+
     private final CategoryService categoryService;
 
     private final UserService userService;
@@ -24,11 +26,10 @@ public class ProductController {
     }
 
     @GetMapping("/product/{productId}")
-    public String product(Model model, @PathVariable("productId") Long productId){
+    public String product(Model model, @PathVariable("productId") Long productId) {
         Product product = productService.findProductById(productId);
         model.addAttribute(product);
         model.addAttribute("user", userService.getCurrentUser());
         return "home/product";
     }
-
 }

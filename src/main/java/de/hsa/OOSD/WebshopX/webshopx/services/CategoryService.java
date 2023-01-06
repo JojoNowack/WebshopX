@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public class CategoryService {
+
     private final CategoryRepository categoryRepository;
 
     public CategoryService(CategoryRepository categoryRepository) {
@@ -18,7 +19,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category findCategoryByName(String name){
+    public Category findCategoryByName(String name) {
         return categoryRepository.findCategoryByName(name);
     }
 

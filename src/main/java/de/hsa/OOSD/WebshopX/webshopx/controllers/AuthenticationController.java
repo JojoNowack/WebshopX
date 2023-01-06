@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @Controller
 public class AuthenticationController {
+
     private final UserService userService;
 
     public AuthenticationController(UserService userService) {
@@ -26,7 +27,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("register")
-    public String showRegistrationForm(Model model){
+    public String showRegistrationForm(Model model) {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return "authentication/register";
@@ -35,8 +36,8 @@ public class AuthenticationController {
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto user,
                                BindingResult result,
-                               Model model){
-        User existingUser = userService.findByEmail(user.getEmail());
+                               Model model) {
+        User existingUser = userService.findUserByEmail(user.getEmail());
         if (existingUser != null) {
             result.rejectValue("email", null, "Es gibt bereits einen Account mit dieser Email!");
         }
@@ -44,7 +45,7 @@ public class AuthenticationController {
             model.addAttribute("user", user);
             return "authentication/register";
         }
-        userService.saveUser(user);
+        userService.save(user);
         return "redirect:/register?success";
     }
 }

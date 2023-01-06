@@ -6,13 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name="products")
+@Table(name = "products")
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,11 +24,12 @@ public class Product {
 
     @NotNull
     private Status status;
+
     @NotNull
     private String artist;
 
     @NotNull
-    private Double price;
+    private BigDecimal price;
 
     @NotNull
     String publicationYear;
@@ -40,8 +43,10 @@ public class Product {
     @NotNull
     private String imageUrl;
 
-
-    public Product(String name, String artist, Double price, String publicationYear, Category category, String description, String imageUrl) {
+    /**
+     * Constructor used for creating test products
+     */
+    public Product(String name, String artist, BigDecimal price, String publicationYear, Category category, String description, String imageUrl) {
         this.name = name;
         this.artist = artist;
         this.price = price;
@@ -49,23 +54,26 @@ public class Product {
         this.category = category;
         this.description = description;
         this.imageUrl = imageUrl;
-
         this.status = Status.AVAILABLE;
     }
 
-    public boolean isAvailable(){
+    /**
+     * DO NOT DELETE.
+     * This is used from Thymeleaf. However, IntelliJ marks it as unused.
+     */
+    public boolean isAvailable() {
         return status == Status.AVAILABLE;
     }
 
-    public void toggleStatus(){
-        if(status == Status.AVAILABLE){
+    public void toggleStatus() {
+        if (status == Status.AVAILABLE) {
             status = Status.SOLD;
-        } else{
+        } else {
             status = Status.AVAILABLE;
         }
     }
 
-    public enum Status{
+    public enum Status {
         AVAILABLE, SOLD
     }
 

@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @Table(name = "users")
 public class User {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -38,15 +39,15 @@ public class User {
     @Column
     private List<Product> cartItems = new ArrayList<>();
 
-    public void addCartItem(Product product){
+    public void addCartItem(Product product) {
         this.cartItems.add(product);
     }
 
-    public void removeCartItem(Product product){
+    public void removeCartItem(Product product) {
         this.cartItems.remove(product);
     }
 
-    public boolean containsCartItem(Product product){
+    public boolean cartContainsItem(Product product) {
         return cartItems.contains(product);
     }
 }

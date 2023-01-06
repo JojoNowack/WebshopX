@@ -5,6 +5,7 @@ import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -12,10 +13,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
-    private final String PRICE = "price";
-    private final String YEAR = "year";
-    private final String TITLE = "title";
-    private final String DESCENDING = "desc";
+
+    private static final String PRICE = "price";
+
+    private static final String YEAR = "year";
+
+    private static final String TITLE = "title";
+
+    private static final String DESCENDING = "desc";
 
     private final ProductRepository productRepository;
 
@@ -35,16 +40,17 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public List<Product> findByCategory(Category category) {
-        return productRepository.findByCategory(category);
+    public List<Product> findProductsByCategory(Category category) {
+        return productRepository.findProductsByCategory(category);
     }
 
-    public List<Product> findBySearchQuery(String searchQuery) {
-        return productRepository.findBySearchQuery(searchQuery);
+    public List<Product> findProductsBySearchQuery(String searchQuery) {
+        return productRepository.findProductsBySearchQuery(searchQuery);
     }
 
-    public List<Product> findByPublicationYear(String publicationYear) {
-        String prefix = publicationYear.substring(0,2);
+    public List<Product> findProductsByPublicationYear(String publicationYear) {
+        // Get the prefix of the period in order to filter the products
+        String prefix = publicationYear.substring(0, 2);
         return productRepository.findProductsByPublicationYearStartingWith(prefix);
     }
 
@@ -69,7 +75,13 @@ public class ProductService {
         return productsSorted;
     }
 
-    public double getSumOfPrices(List<Product> products){
-        return products.stream().mapToDouble(Product::getPrice).sum();
+    public BigDecimal getSumOfProductPrices(List<Product> products) {
+        BigDecimal sum = new BigDecimal(0);
+
+        for (Product product : products) {
+            sum = sum.add(product.getPrice());
+        }
+
+        return sum;
     }
 }

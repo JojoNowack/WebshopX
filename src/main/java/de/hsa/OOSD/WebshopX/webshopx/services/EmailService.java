@@ -1,52 +1,54 @@
 package de.hsa.OOSD.WebshopX.webshopx.services;
 
 import de.hsa.OOSD.WebshopX.webshopx.models.Product;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 @Service
 public class EmailService {
-    private final String ART_X_MAIL_ADDRESS = "art.artx@gmx.de";
-    private final String MAIL_SUBJECT = "ArtX - Vielen Dank für Deinen Einkauf";
 
-    private String billContent;
-    @Autowired
-    private JavaMailSender mailSender;
+    private final static String ART_X_MAIL_ADDRESS = "art.artx@gmx.de";
 
-    public void sendEmail(String to) {
+    private final static String MAIL_SUBJECT = "ArtX - Vielen Dank für Deinen Einkauf";
+
+    private final static String MAIL_START = "Lieber Kunde,\n\nvielen Dank für Deinen Einkauf. Anbei erhältst Du Deine Rechnung:\n\n";
+
+    private final static String MAIL_END = "\n\nMit freundlichen Grüßen\n\nDein ArtX-Team";
+
+    private final static String PAYMENT_DETAILS = "\n\nEmpfänger: ArtX\nIBAN: 123456789\nBankinstitut: BankX";
+
+    private String invoice;
+
+    private final JavaMailSender mailSender;
+
+    public EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
+
+    public void sendEmail(String to, Collection<Product> boughtItems) {
         SimpleMailMessage message = new SimpleMailMessage();
+
+        createInvoice(boughtItems);
+
         message.setFrom(ART_X_MAIL_ADDRESS);
         message.setTo(to);
         message.setSubject(MAIL_SUBJECT);
-        message.setText(createSubject());
+        message.setText(MAIL_START + invoice + PAYMENT_DETAILS + MAIL_END);
 
         mailSender.send(message);
     }
 
-    public String setBillContent(Collection<Product> boughtItems, double sum){
-        billContent = "";
-        for (Product item : boughtItems){
-            billContent += item.getName() + " - "+ item.getPrice() + " Euro\n";
+    private void createInvoice(Collection<Product> boughtItems) {
+        invoice = "";
+        BigDecimal invoiceSum = new BigDecimal(0);
+        for (Product item : boughtItems) {
+            invoice += "" + item.getName() + "\n" + item.getPrice() + " €\n\n";
+            invoiceSum = invoiceSum.add(item.getPrice());
         }
-        billContent+="\nSumme: " + sum + " Euro";
-
-        billContent+="\n\nBitte überweise " + sum + " Euro auf das folgende Konto:\n\n";
-        billContent+="Empfänger: ArtX\nIBAN: 123456789\nBankinstitut: BankX\n\n";
-        return billContent;
+        invoice += "Gesamt: " + invoiceSum + " €";
     }
-
-    private String createSubject(){
-        String start = "Lieber Kunde,\n\nvielen Dank für Deinen Einkauf. Anbei erhältst Du Deine Rechnung:\n\n";
-        String bill = billContent;
-        String end = "Mit freundlichen Grüßen\n\nDein ArtX-Team";
-        return start + bill + end;
-    }
-
-
-
-
 }
