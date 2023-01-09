@@ -31,8 +31,16 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.antMatchers("/register/**").permitAll()
-                                .antMatchers("/").authenticated()
                                 .antMatchers("/images/**").permitAll()
+                                .antMatchers("/").authenticated()
+                                .antMatchers("/toggle-cart/**").authenticated()
+                                .antMatchers("/cart").authenticated()
+                                .antMatchers("/checkout").authenticated()
+                                .antMatchers("/faq").authenticated()
+                                .antMatchers("/about").authenticated()
+                                .antMatchers("/filter/**").authenticated()
+                                .antMatchers("/sort/**").authenticated()
+                                .antMatchers("/product/**").authenticated()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
