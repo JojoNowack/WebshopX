@@ -43,6 +43,7 @@ public class DataInitializer implements CommandLineRunner {
         // Test users
         userService.save(new User(1l, "test", "test@test.de", passwordEncoder.encode("test"), Arrays.asList(roleRepository.findRoleByName("ROLE_ADMIN")), new ArrayList<>()));
         userService.save(new User(2l, "test", "andyschmid3@gmail.com", passwordEncoder.encode("test"), Arrays.asList(roleRepository.findRoleByName("ROLE_ADMIN")), new ArrayList<>()));
+        userService.save(new User(10l, "test", "erich.seifert@hs-augsburg.de", passwordEncoder.encode("test"), Arrays.asList(roleRepository.findRoleByName("ROLE_ADMIN")), new ArrayList<>()));
 
         // Test categories
         Category malerei = new Category(Category.CategoryType.MALEREI, "Malerei");
