@@ -45,6 +45,6 @@ public class UserServiceTest {
     void testFindUserByEmail() {
         given(userRepository.findUserByEmail("test@test.de")).willReturn(user);
         User savedUser = userService.findUserByEmail(user.getEmail());
-        assertThat(savedUser).isNotNull();
+        assertThat(savedUser).isEqualTo(user);
     }
 }
