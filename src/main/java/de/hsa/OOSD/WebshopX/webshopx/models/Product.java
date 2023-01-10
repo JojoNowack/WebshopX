@@ -1,68 +1,80 @@
 package de.hsa.OOSD.WebshopX.webshopx.models;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-/**
- * The class Product representing a specific product.
- */
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "products")
 public class Product {
 
-    /**
-     * The id of a specific product.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * The name of a specific product.
-     */
     @NotNull
     private String name;
+
+    @NotNull
+    private Status status;
+
     @NotNull
     private String artist;
 
-
-    /**
-     * The price of a specific product.
-     */
     @NotNull
-    private Float price;
+    private BigDecimal price;
 
     @NotNull
-    private int date;
-
+    String publicationYear;
 
     @ManyToOne
     private Category category;
 
-
-    /**
-     * The description of a specific product.
-     */
     @NotNull
     private String description;
 
     @NotNull
     private String imageUrl;
 
-    //only for testing
-    public Product(String name, String artist, Float price, int date, Category category, String description, String imageUrl) {
+    /**
+     * Constructor used for creating test products
+     */
+    public Product(String name, String artist, BigDecimal price, String publicationYear, Category category, String description, String imageUrl) {
         this.name = name;
         this.artist = artist;
         this.price = price;
-        this.date = date;
+        this.publicationYear = publicationYear;
         this.category = category;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.status = Status.AVAILABLE;
+    }
+
+    /**
+     * DO NOT DELETE.
+     * This is used from Thymeleaf. However, IntelliJ marks it as unused.
+     */
+    public boolean isAvailable() {
+        return status == Status.AVAILABLE;
+    }
+
+    public void toggleStatus() {
+        if (status == Status.AVAILABLE) {
+            status = Status.SOLD;
+        } else {
+            status = Status.AVAILABLE;
+        }
+    }
+
+    public enum Status {
+        AVAILABLE, SOLD
     }
 
 }

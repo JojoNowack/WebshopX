@@ -9,11 +9,15 @@ import org.thymeleaf.templateresolver.FileTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 
+/**
+ * This is needed to enable live reloading for some members of the development team.
+ * For more information on this, visit:
+ * https://stackoverflow.com/questions/40057057/spring-boot-and-thymeleaf-hot-swap-templates-and-resources-once-again
+ */
 @Configuration
-public class LiveReloadInitializer {
+public class TemplateResolver {
     @Autowired
     private ThymeleafProperties properties;
-
     @Value("${spring.thymeleaf.templates_root:}")
     private String templatesRoot;
 
@@ -26,5 +30,4 @@ public class LiveReloadInitializer {
         resolver.setCacheable(properties.isCache());
         return resolver;
     }
-
 }

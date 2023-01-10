@@ -5,91 +5,68 @@ import de.hsa.OOSD.WebshopX.webshopx.models.Product;
 import de.hsa.OOSD.WebshopX.webshopx.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * The Service class ProductService.
- */
 @Service
 public class ProductService {
 
-    private final String PRICE = "price";
-    private final String YEAR = "year";
-    private final String TITLE = "title";
-    private final  String DESCENDING = "desc";
+    private static final String PRICE = "price";
 
-    /**
-     * The productRepository of the service.
-     */
+    private static final String YEAR = "year";
+
+    private static final String TITLE = "title";
+
+    private static final String DESCENDING = "desc";
+
     private final ProductRepository productRepository;
 
-    /**
-     * Creates a new ProductService.
-     *
-     * @param productRepository A ProductRepository of all products.
-     */
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    /**
-     * Finds a product based on its id.
-     *
-     * @param productId The id of a specific product.
-     * @return The product of the given productId.
-     */
-    public Product getProductById(Long productId) {
+    public Product findProductById(Long productId) {
         return productRepository.findProductById(productId);
     }
 
-    /**
-     * Returns all products.
-     *
-     * @return All products from the repository.
-     */
     public List<Product> findAllProducts() {
         return productRepository.findAll();
     }
 
-
-    /**
-     * Saves a new product instance in the repository.
-     *
-     * @param product The new product to be saved.
-     * @return The instance of the new Product.
-     */
     public Product save(Product product) {
         return productRepository.save(product);
     }
 
-    public List<Product> findByCategory(Category category) {
-        return productRepository.findByCategory(category);
+    public List<Product> findProductsByCategory(Category category) {
+        return productRepository.findProductsByCategory(category);
     }
 
-    public List<Product> findBySearchQuery(String searchQuery) {
-        return productRepository.findBySearchQuery(searchQuery);
+    public List<Product> findProductsBySearchQuery(String searchQuery) {
+        return productRepository.findProductsBySearchQuery(searchQuery);
+    }
+
+    public List<Product> findProductsByPublicationYear(String publicationYear) {
+        // Get the prefix of the period in order to filter the products
+        String prefix = publicationYear.substring(0, 2);
+        return productRepository.findProductsByPublicationYearStartingWith(prefix);
     }
 
     public List<Product> sortProducts(List<Product> products, String item, String direction) {
-
         List<Product> productsSorted;
 
         switch (item) {
             case PRICE -> {
                 productsSorted = products.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
             }
-
             case YEAR -> {
-                productsSorted = products.stream().sorted(Comparator.comparing(Product::getDate)).collect(Collectors.toList());
+                productsSorted = products.stream().sorted(Comparator.comparing(Product::getPublicationYear)).collect(Collectors.toList());
             }
-
             case TITLE -> {
                 productsSorted = products.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
             }
-
             default -> productsSorted = findAllProducts();
         }
 
@@ -98,4 +75,13 @@ public class ProductService {
         return productsSorted;
     }
 
+    public BigDecimal getSumOfProductPrices(List<Product> products) {
+        BigDecimal sum = new BigDecimal(0);
+
+        for (Product product : products) {
+            sum = sum.add(product.getPrice());
+        }
+
+        return sum;
+    }
 }

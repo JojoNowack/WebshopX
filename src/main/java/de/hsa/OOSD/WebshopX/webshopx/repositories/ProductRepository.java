@@ -11,47 +11,41 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * The interface ProductRepository.
- */
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    /**
-     * Finds a product based on its id.
-     *
-     * @param productId The id of a specific product.
-     * @return The product of the given productId.
-     */
     Product findProductById(Long productId);
 
-//    //taken from https://www.codejava.net/frameworks/spring-boot/spring-data-jpa-filter-search-examples
-//    @Query("SELECT p FROM Product p WHERE CONCAT(p.name, ' ', p.artist, ' ', p.date, ' ', p.price,' ',p.category,' ',p.description) LIKE %?1%")
-//    public Iterable<Product> search(String keyword);
+    List<Product> findDistinctByArtistContainingIgnoreCaseOrNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String artist,
+                                                                                                                      String name,
+                                                                                                                      String description);
 
-    List<Product> findDistinctByArtistContainingIgnoreCaseOrNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String artist, String name, String description);
+    List<Product> findProductsByPublicationYearStartingWith(String prefix);
 
-    List<Product> findByCategory(Category category);
+    List<Product> findProductsByCategory(Category category);
 
-    @Query("SELECT p FROM Product p WHERE TO_CHAR(p.date) LIKE %:date%")
-    List<Product> findByDateContaining(@Param("date")String date);
+    @Query("SELECT p FROM Product p WHERE TO_CHAR(p.publicationYear) LIKE %:publicationYear%")
+    List<Product> findProductsByPublicationYearContaining(@Param("publicationYear") String date);
 
     @Query("SELECT p FROM Product p WHERE TO_CHAR(p.price) LIKE %:price%")
-    List<Product> findByPriceContaining(@Param("price") String price);
+    List<Product> findProductsByPriceContaining(@Param("price") String price);
 
-    default List<Product> findBySearchQuery(String searchQuery){
+    /**
+     * This implements the search functionality by combining the search results of several findBy-methods.
+     */
+    default List<Product> findProductsBySearchQuery(String searchQuery) {
         if (searchQuery != null) {
-            List<Product> resultOne = findDistinctByArtistContainingIgnoreCaseOrNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchQuery, searchQuery, searchQuery);
-            List<Product> resultTwo = findByDateContaining(searchQuery);
-            List<Product> resultThree = findByPriceContaining(searchQuery);
+            List<Product> resultSetArtistNameDescr = findDistinctByArtistContainingIgnoreCaseOrNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchQuery, searchQuery, searchQuery);
+            List<Product> resultSetPublicationYear = findProductsByPublicationYearContaining(searchQuery);
+            List<Product> resultSetPrice = findProductsByPriceContaining(searchQuery);
 
-            Set<Product> resultSet = new HashSet<>(resultOne);
-            resultSet.addAll(resultTwo);
-            resultSet.addAll(resultThree);
-            List<Product> products= new ArrayList<>(resultSet);
+            Set<Product> resultSet = new HashSet<>(resultSetArtistNameDescr);
+            resultSet.addAll(resultSetPublicationYear);
+            resultSet.addAll(resultSetPrice);
+            List<Product> products = new ArrayList<>(resultSet);
             return products;
         }
+
         return findAll();
     }
-
 }
 
