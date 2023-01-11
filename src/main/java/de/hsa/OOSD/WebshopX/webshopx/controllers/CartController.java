@@ -85,6 +85,7 @@ public class CartController {
             userService.save(user);
 
         } catch (Exception e) {
+            e.printStackTrace();
             // If sending failed (e.g. internet connection lost), display an error message
             return "home/order_failed";
         }

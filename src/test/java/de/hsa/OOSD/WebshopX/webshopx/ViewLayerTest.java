@@ -47,3 +47,5 @@ public class ViewLayerTest {
                 .andExpect(content().string(containsString("Wir sind ArtX")));
     }
 }
+
+
