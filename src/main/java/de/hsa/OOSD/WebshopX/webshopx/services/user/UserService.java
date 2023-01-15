@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -48,6 +49,8 @@ public class UserService {
     public void save(User user) {
         userRepository.save(user);
     }
+
+    public List<User> findAllUsers() { return userRepository.findAll(); }
 
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
