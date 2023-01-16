@@ -23,7 +23,6 @@
                                 <div class="form-group mb-3 text-start">
                                     <label class="form-label">Vorname</label>
                                     <input class="form-control"
-                                           id="firstName"
                                            name="firstName"
                                            placeholder="Vorname eingeben"
                                            th:field="*{firstName}"
@@ -37,7 +36,6 @@
                                 <div class="form-group mb-3 text-start">
                                     <label class="form-label">Nachname</label>
                                     <input class="form-control"
-                                           id="lastName"
                                            name="lastName"
                                            placeholder="Nachname eingeben"
                                            th:field="*{lastName}"
@@ -50,7 +48,6 @@
                                 <div class="form-group mb-3 text-start">
                                     <label class="form-label">E-Mail</label>
                                     <input class="form-control"
-                                           id="email"
                                            name="email"
                                            placeholder="Email eingeben"
                                            th:field="*{email}"
@@ -63,7 +60,6 @@
                                 <div class="form-group mb-3 text-start">
                                     <label class="form-label ">Passwort</label>
                                     <input class="form-control"
-                                           id="password"
                                            name="password"
                                            placeholder="Passwort eingeben"
                                            th:field="*{password}"
@@ -87,7 +83,7 @@
                             class="text-success" th:href="@{/login}">Direkt loslegen</a></div>
                 </div>
                 <div th:unless="${param.success}">
-                    <div id="blank-alert-register" class="text-center alert alert-light mt-5">blank</div>
+                    <div class="text-center alert alert-light mt-5">blank</div>
                 </div>
             </div>
         </div>

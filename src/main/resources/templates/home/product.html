@@ -31,11 +31,11 @@
                 <p class="lead mb-5" th:text="${product.getPublicationYear}"></p>
                 <div class="d-flex">
                     <div th:if="${#lists.contains(user.cartItems, product)}">
-                        <a  id="btn-remove-from-cart-product" class="btn btn-lg btn-danger flex-shrink-0" th:href="@{/toggle-cart/{productId}(productId=${product.id})}"><span>Entfernen </span><i class="bi bi-cart-dash-fill"></i>
+                        <a class="btn btn-lg btn-danger flex-shrink-0" th:href="@{/toggle-cart/{productId}(productId=${product.id})}"><span>Entfernen </span><i class="bi bi-cart-dash-fill"></i>
                         </a>
                     </div>
                     <div th:unless="${#lists.contains(user.cartItems, product)}">
-                        <a id="btn-add-to-cart-product" class="btn btn-lg btn-success flex-shrink-0" th:href="@{/toggle-cart/{productId}(productId=${product.id})}"><span>Hinzufügen </span><i  class="bi bi-cart-check-fill"></i>
+                        <a class="btn btn-lg btn-success flex-shrink-0" th:href="@{/toggle-cart/{productId}(productId=${product.id})}"><span>Hinzufügen </span><i  class="bi bi-cart-check-fill"></i>
                         </a>
                     </div>
                 </div>

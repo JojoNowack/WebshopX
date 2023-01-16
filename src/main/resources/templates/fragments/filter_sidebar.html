@@ -8,7 +8,7 @@
     <ul class="nav flex-column ps-0">
         <li class="nav-item mb-1">
             <button class="btn d-inline-flex align-items-center rounded border-0">
-                <a id="btn-category-all" class="link-dark d-inline-flex rounded text-decoration-none"
+                <a class="link-dark d-inline-flex rounded text-decoration-none"
                    th:href="@{/}">Alle</a>
             </button>
         </li>
@@ -17,7 +17,7 @@
                     data-bs-toggle="collapse" data-bs-target="#collapse-art-category" aria-expanded="true">
                 Kategorie
             </button>
-            <div id="collapse-art-category" class="collapse">
+            <div class="collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li th:each="category : ${categories}"><a class="link-dark d-inline-flex text-decoration-none rounded" th:href="@{/filter/category={category}(category=${category})}"><span
                             th:text="${category}"></span></a></li>
@@ -29,7 +29,7 @@
                     data-bs-toggle="collapse" data-bs-target="#collapse-year" aria-expanded="true">
                 Jahr
             </button>
-            <div id="collapse-year"  class="collapse">
+            <div class="collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li th:each="year : ${years}"><a class="link-dark d-inline-flex text-decoration-none rounded" th:href="@{/filter/period={year}(year=${year})}"><span
                             th:text="${year}"></span></a></li>

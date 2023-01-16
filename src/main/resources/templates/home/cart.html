@@ -52,7 +52,7 @@
                                                 <span><span class="text-muted" th:text="${item.price}"></span>
                                             <span class="text-muted"> €</span></span>
                                             </div>
-                                            <a id="btn-remove-from-cart-cart"  class="btn btn-sm btn-danger mx-3"
+                                            <a class="btn btn-sm btn-danger mx-3"
                                                th:href="@{/toggle-cart/{productId}(productId=${item.id})}">Entfernen <i class="bi bi-trash-fill"></i></i>
                                             </a>
                                         </div>
@@ -73,7 +73,7 @@
             </div>
             </div>
             <div class="text-center my-4">
-                <a type="button" id="btn-checkout" class="btn btn-success btn-block btn-lg" th:href="@{/checkout}">Jetzt verbindlich kaufen</a>
+                <a type="button" class="btn btn-success btn-block btn-lg" th:href="@{/checkout}">Jetzt verbindlich kaufen</a>
             </div>
             <p class="text-muted text-center">Deine Rechnung erhältst Du in einer gesonderten E-Mail.</p>
         </div>

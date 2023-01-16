@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col d-flex justify-content-start">
             <div class="dropdown">
-                <a id="btn-sort" class="btn btn-outline-dark dropdown-toggle" href="#" role="button"
+                <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">
                     Sortieren nach:
                 </a>
@@ -91,12 +91,12 @@
                             </div>
                             <hr>
                             <div th:if="${#lists.contains(user.cartItems, product)}">
-                                <a id="btn-remove-from-cart-home" class="btn btn-sm btn-outline-danger"
+                                <a class="btn btn-sm btn-outline-danger"
                                    th:href="@{/toggle-cart/{productId}(productId=${product.id})}"><span>Entfernen </span><i
                                         class="bi bi-cart-dash-fill"></i></a>
                             </div>
                             <div th:unless="${#lists.contains(user.cartItems, product)}">
-                                <a id="btn-add-to-cart-home" class="btn btn-sm btn-outline-success"
+                                <a class="btn btn-sm btn-outline-success"
                                    th:href="@{/toggle-cart/{productId}(productId=${product.id})}"><span>Hinzufügen </span><i
                                         class="bi bi-cart-check-fill"></i></a>
                             </div>
