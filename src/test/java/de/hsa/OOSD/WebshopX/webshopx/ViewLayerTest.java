@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class WebLayerTest {
+public class ViewLayerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -47,3 +47,5 @@ public class WebLayerTest {
                 .andExpect(content().string(containsString("Wir sind ArtX")));
     }
 }
+
+

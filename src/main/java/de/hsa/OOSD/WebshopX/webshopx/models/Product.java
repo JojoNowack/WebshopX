@@ -77,6 +77,10 @@ public class Product {
         AVAILABLE, SOLD
     }
 
+    public interface ProductBoughtListener {
+        void onProductBought(User currentUser, Product product);
+    }
+
 }
 
 

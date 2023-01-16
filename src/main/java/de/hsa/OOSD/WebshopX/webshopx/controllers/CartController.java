@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-public class CartController {
+public class CartController implements Product.ProductBoughtListener {
 
     private final ProductService productService;
 
@@ -78,6 +79,7 @@ public class CartController {
             for (Product item : user.getCartItems()) {
                 item.toggleStatus();
                 productService.save(item);
+                onProductBought(user, item);
             }
 
             // Clear the user cart and save the updated user entity
@@ -85,11 +87,26 @@ public class CartController {
             userService.save(user);
 
         } catch (Exception e) {
+            e.printStackTrace();
             // If sending failed (e.g. internet connection lost), display an error message
             return "home/order_failed";
         }
 
         return "home/order_confirmation";
+    }
+
+    @Override
+    public void onProductBought(User currentUser, Product product) {
+        List<User> allUsers = userService.findAllUsers();
+        allUsers.remove(currentUser);
+
+        // Remove the bought product from all carts if the cart contains this product
+        for (User user : allUsers) {
+            if (user.cartContainsItem(product)) {
+                user.removeCartItem(product);
+                userService.save(user);
+            }
+        }
     }
 }
 

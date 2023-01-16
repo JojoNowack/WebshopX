@@ -35,7 +35,7 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles = new ArrayList<>();
 
-    @OneToMany
+    @ManyToMany
     @Column
     private List<Product> cartItems = new ArrayList<>();
 
