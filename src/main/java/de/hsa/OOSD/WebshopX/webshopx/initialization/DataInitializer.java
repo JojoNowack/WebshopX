@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 /**
  * This initializes the test data (e.g. test users, products,...)
  */
@@ -50,10 +51,12 @@ public class DataInitializer implements CommandLineRunner {
         Category plastik = new Category(Category.CategoryType.PLASTIK, "Plastik");
         Category grafik = new Category(Category.CategoryType.GRAFIK, "Grafik");
         Category fluegelaltar = new Category(Category.CategoryType.FLUEGELALTAR, "Fluegelaltar");
+        Category gci = new Category(Category.CategoryType.CGI, "CGI");
         categoryService.save(malerei);
         categoryService.save(plastik);
         categoryService.save(grafik);
         categoryService.save(fluegelaltar);
+        categoryService.save(gci);
 
         // Test products
         productService.save(new Product("Maria mit Kind und einem Mönch", "Parmigianino", new BigDecimal(10000.00), "1530", malerei, "Parmigianinos Madonnen zeichnen sich durch Grazie, Eleganz und ideale Schönheit aus.", "/images/products/pic_product_1.jpg"));
@@ -72,6 +75,8 @@ public class DataInitializer implements CommandLineRunner {
         productService.save(new Product("La Bouteille de Bordeaux", "Juan Gris", new BigDecimal(40000.00), "1915", malerei, "1971 als Vermächtnis von Theodor und Woty Werner erworben.", "/images/products/pic_product_14.jpg"));
         productService.save(new Product("Hausaltärchen Kleiner Dom", "Kölnisch", new BigDecimal(5000.00), "1370", fluegelaltar, "Dieses Gemälde ist bestückt mit plastischer Verkündigungsgruppe (Schrein), Szenen aus der Kindheit Jesu und Heiligen Flügelaußenseiten: Verkündigung.", "/images/products/pic_product_15.jpg"));
         productService.save(new Product("Reliquienaltärchen mit Verkündigung", "Kölnisch", new BigDecimal(1250.00), "1349", fluegelaltar, "Das Gemälde zeigt die Geburt Christi, Marienkrönung, Taufe Christi und nicht zugehöriger Elfenbeinstatuette der Muttergottes Flügelaußenseite.", "/images/products/pic_product_16.jpg"));
+        productService.save(new Product("A 3D render of an astronaut walking in a green desert", "DallE", new BigDecimal(0.00), "2022", gci, "Dieses Bild wurde von einer AI erstellt. Der Titel war das einzige was ein Mensch zusteurte", "/images/products/pic_product_17.jpg"));
+        productService.save(new Product("Merkur in Herse verliebt", "Jan Boeckhorst", new BigDecimal(12340.00), "1655", malerei, "Jan Boeckhorst, Merkur in Herse verliebt, um 1655, Bayerische Staatsgemäldesammlungen - Staatsgalerie im Neuen Schloss Schleißheim", "/images/products/pic_product_18.jpg"));
     }
 
     @Override

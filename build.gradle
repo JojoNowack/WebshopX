@@ -4,7 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'de.hsa.OOSD.WebshopX'
+group = 'de.hsa.OOSD.ArtX'
 version = '0.1.1-firstSNAPSHOT'
 sourceCompatibility = '17'
 
