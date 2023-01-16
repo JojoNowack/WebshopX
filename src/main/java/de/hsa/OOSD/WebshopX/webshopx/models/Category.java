@@ -35,6 +35,6 @@ public class Category {
     }
 
     public enum CategoryType {
-        MALEREI, GRAFIK, PLASTIK, FLUEGELALTAR
+        MALEREI, GRAFIK, PLASTIK, FLUEGELALTAR, CGI
     }
 }
