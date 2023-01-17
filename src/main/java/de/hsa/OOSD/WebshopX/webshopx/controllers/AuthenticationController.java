@@ -38,6 +38,7 @@ public class AuthenticationController {
                                BindingResult result,
                                Model model) {
         User existingUser = userService.findUserByEmail(user.getEmail());
+
         if (existingUser != null) {
             result.rejectValue("email", null, "Es gibt bereits einen Account mit dieser Email!");
         }
@@ -45,6 +46,7 @@ public class AuthenticationController {
             model.addAttribute("user", user);
             return "authentication/register";
         }
+
         userService.save(user);
         return "redirect:/register?success";
     }

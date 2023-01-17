@@ -64,7 +64,6 @@ public class UserService {
             User user = findUserByEmail(email);
             return user;
         }
-
         return null;
     }
 
