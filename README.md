@@ -17,6 +17,9 @@ The project was developed in order to learn the basics of the Spring framework, 
 * The images of the test products were downloaded from https://www.pinakothek.de/ (copyright free)
 * All other images were downloaded from https://www.pexels.com/ (copyright free)
 
+In case the invoice distribution via mail does not work as intended:
+This is caused by the gmx SMTP authentication. If this occurs, do not hesitate to contact us.
+
 
 ## Authors
 

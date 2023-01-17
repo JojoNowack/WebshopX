@@ -42,9 +42,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             resultSet.addAll(resultSetPublicationYear);
             resultSet.addAll(resultSetPrice);
             List<Product> products = new ArrayList<>(resultSet);
+
             return products;
         }
-
         return findAll();
     }
 }

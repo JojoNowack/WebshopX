@@ -19,20 +19,26 @@
             </button>
             <div id="collapse-art-category" class="collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li th:each="category : ${categories}"><a class="link-dark d-inline-flex text-decoration-none rounded" th:href="@{/filter/category={category}(category=${category})}"><span
+                    <li th:each="category : ${categories}"><a
+                            class="link-dark d-inline-flex text-decoration-none rounded"
+                            th:href="@{/filter/category={category}(category=${category})}"><span
                             th:text="${category}"></span></a></li>
                 </ul>
             </div>
         </li>
         <li class="mb-1">
-            <button   class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                     data-bs-toggle="collapse" data-bs-target="#collapse-year" aria-expanded="true">
                 Jahr
             </button>
-            <div id="collapse-year"  class="collapse">
+            <div id="collapse-year" class="collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li th:each="year : ${years}"><a class="link-dark d-inline-flex text-decoration-none rounded" th:href="@{/filter/period={year}(year=${year})}"><span
-                            th:text="${year}"></span></a></li>
+                    <li th:each="year : ${years}">
+                        <a class="link-dark d-inline-flex text-decoration-none rounded"
+                           th:href="@{/filter/period={year}(year=${year})}">
+                            <span th:text="${year}"></span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>

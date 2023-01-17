@@ -50,6 +50,7 @@ public class CartController implements Product.ProductBoughtListener {
 
     @GetMapping("/cart")
     public String cart(Model model) {
+
         user = userService.getCurrentUser();
 
         model.addAttribute("user", user);
@@ -60,6 +61,7 @@ public class CartController implements Product.ProductBoughtListener {
 
     @GetMapping("/checkout")
     public String checkout(Model model) {
+
         user = userService.getCurrentUser();
 
         // Redirect user to his cart if he trys to manually open the checkout page
@@ -87,7 +89,10 @@ public class CartController implements Product.ProductBoughtListener {
             userService.save(user);
 
         } catch (Exception e) {
+
+            // Print Exception information to get details about it
             e.printStackTrace();
+
             // If sending failed (e.g. internet connection lost), display an error message
             return "home/order_failed";
         }

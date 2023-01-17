@@ -11,6 +11,10 @@ import java.util.Collection;
 @Service
 public class EmailService {
 
+    /**
+     * Static Strings needed for creating the invoice
+     */
+
     private final static String ART_X_MAIL_ADDRESS = "art.artx@gmx.de";
 
     private final static String MAIL_SUBJECT = "ArtX - Vielen Dank für Deinen Einkauf";
@@ -45,10 +49,12 @@ public class EmailService {
     private void createInvoice(Collection<Product> boughtItems) {
         invoice = "";
         BigDecimal invoiceSum = new BigDecimal(0);
+
         for (Product item : boughtItems) {
             invoice += "" + item.getName() + "\n" + item.getPrice() + " €\n\n";
             invoiceSum = invoiceSum.add(item.getPrice());
         }
+
         invoice += "Gesamt: " + invoiceSum + " €";
     }
 }

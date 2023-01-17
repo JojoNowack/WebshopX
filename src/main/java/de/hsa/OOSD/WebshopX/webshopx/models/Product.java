@@ -80,7 +80,6 @@ public class Product {
     public interface ProductBoughtListener {
         void onProductBought(User currentUser, Product product);
     }
-
 }
 
 

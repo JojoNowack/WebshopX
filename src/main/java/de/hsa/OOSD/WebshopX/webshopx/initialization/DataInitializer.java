@@ -41,6 +41,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void initialize() {
+
         // Test users
         userService.save(new User(1l, "test", "test@test.de", passwordEncoder.encode("test"), Arrays.asList(roleRepository.findRoleByName("ROLE_ADMIN")), new ArrayList<>()));
         userService.save(new User(2l, "test", "andyschmid3@gmail.com", passwordEncoder.encode("test"), Arrays.asList(roleRepository.findRoleByName("ROLE_ADMIN")), new ArrayList<>()));
@@ -51,12 +52,12 @@ public class DataInitializer implements CommandLineRunner {
         Category plastik = new Category(Category.CategoryType.PLASTIK, "Plastik");
         Category grafik = new Category(Category.CategoryType.GRAFIK, "Grafik");
         Category fluegelaltar = new Category(Category.CategoryType.FLUEGELALTAR, "Fluegelaltar");
-        Category gci = new Category(Category.CategoryType.CGI, "CGI");
+        Category cgi = new Category(Category.CategoryType.CGI, "CGI");
         categoryService.save(malerei);
         categoryService.save(plastik);
         categoryService.save(grafik);
         categoryService.save(fluegelaltar);
-        categoryService.save(gci);
+        categoryService.save(cgi);
 
         // Test products
         productService.save(new Product("Maria mit Kind und einem Mönch", "Parmigianino", new BigDecimal(10000.00), "1530", malerei, "Parmigianinos Madonnen zeichnen sich durch Grazie, Eleganz und ideale Schönheit aus.", "/images/products/pic_product_1.jpg"));
@@ -75,8 +76,8 @@ public class DataInitializer implements CommandLineRunner {
         productService.save(new Product("La Bouteille de Bordeaux", "Juan Gris", new BigDecimal(40000.00), "1915", malerei, "1971 als Vermächtnis von Theodor und Woty Werner erworben.", "/images/products/pic_product_14.jpg"));
         productService.save(new Product("Hausaltärchen Kleiner Dom", "Kölnisch", new BigDecimal(5000.00), "1370", fluegelaltar, "Dieses Gemälde ist bestückt mit plastischer Verkündigungsgruppe (Schrein), Szenen aus der Kindheit Jesu und Heiligen Flügelaußenseiten: Verkündigung.", "/images/products/pic_product_15.jpg"));
         productService.save(new Product("Reliquienaltärchen mit Verkündigung", "Kölnisch", new BigDecimal(1250.00), "1349", fluegelaltar, "Das Gemälde zeigt die Geburt Christi, Marienkrönung, Taufe Christi und nicht zugehöriger Elfenbeinstatuette der Muttergottes Flügelaußenseite.", "/images/products/pic_product_16.jpg"));
-        productService.save(new Product("A 3D render of an astronaut walking in a green desert", "DallE", new BigDecimal(0.00), "2022", gci, "Dieses Bild wurde von einer AI erstellt. Der Titel war das einzige was ein Mensch zusteurte", "/images/products/pic_product_17.jpg"));
-        productService.save(new Product("Merkur in Herse verliebt", "Jan Boeckhorst", new BigDecimal(12340.00), "1655", malerei, "Jan Boeckhorst, Merkur in Herse verliebt, um 1655, Bayerische Staatsgemäldesammlungen - Staatsgalerie im Neuen Schloss Schleißheim", "/images/products/pic_product_18.jpg"));
+        productService.save(new Product("A 3D render of an astronaut walking in a green desert", "DallE", new BigDecimal(100.00), "2022", cgi, "Dieses Bild wurde von einer KI erstellt. Der Titel ist das Einzige, was ein Mensch zusteuerte...", "/images/products/pic_product_17.jpg"));
+        productService.save(new Product("Merkur in Herse verliebt", "Jan Böckhorst", new BigDecimal(12340.00), "1655", malerei, "Jan Boeckhorst, Merkur in Herse verliebt, um 1655, Bayerische Staatsgemäldesammlungen - Staatsgalerie im Neuen Schloss Schleißheim", "/images/products/pic_product_18.jpg"));
     }
 
     @Override
